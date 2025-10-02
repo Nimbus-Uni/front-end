@@ -1,0 +1,16 @@
+:root {
+    /* Cores principais */
+    --color-bg: #0b0c10;       /* Fundo bem escuro */
+    --color-bg-light: #1f1f23; /* Fundo para seções mais claras */
+    --color-primary: #00bfff;  /* Azul vibrante para botões/links */
+    --color-text: #ffffff;     /* Texto principal */
+    --color-text-muted: #b3b3b3; /* Texto secundário */
+
+    /* Tipografia */
+    --font-main: 'Poppins', sans-serif;
+
+    /* Tamanhos */
+    --container-width: 1200px;
+    --border-radius: 12px;
+    --transition: 0.3s ease-in-out;
+}

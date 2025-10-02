@@ -1,0 +1,30 @@
+/* ESTILOS PARA TELAS MENORES */
+@media (max-width: 700px) {
+    /* Esconder menu normal e mostrar hambúrguer */
+    .nav-links {
+        display: none;
+    }
+
+    #menu-toggle {
+        display: block;
+    }
+
+    .mobile-menu {
+        width: 70%;
+        max-width: 280px;
+    }
+
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .hero-text h1 {
+        font-size: 2rem;
+    }
+
+    .hero-image img {
+        max-width: 300px;
+    }
+}
