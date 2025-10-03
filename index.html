@@ -1,75 +1,70 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nimbus - Consultoria de Segurança</title>
+    <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Nimbus - Segurança e Tecnologia</title>
+
+    <!-- Fonte Inter (Google Fonts) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Variáveis e estilos -->
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/main/styles.css">
     <link rel="stylesheet" href="css/responsive/responsiveHome.css">
     <link rel="stylesheet" href="css/animation/animations.css">
-    <!-- Fonte principal -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <!-- Preloader -->
-    <div id="preloader">
-        <div class="loader"></div>
-        <p>Carregando...</p>
-    </div>
-
-    <!-- Botão Whatsapp -->
-    <a href="https://wa.me/551197728-0849" target="_blank" class="whatsapp-button">
-        <div class="wave"></div>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-    </a>
-
-    <!-- ===== MENU SUPERIOR ===== -->
-    <header class="top-header">
-        <div class="container">
-            <div class="logo">Nimbus.</div>
-
-            <ul class="nav-links">
-                <li><a href="#home">Início</a></li>
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#servicos">Serviços</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
-
-            <!-- Botão hambúrguer -->
-            <div id="menu-toggle">☰</div>
+    </head>
+    <body>
+    <header class="header">
+        <nav class="navbar container">
+        <div class="logo">
+            <img src="assets/logo.png" alt="Nimbus Logo">
         </div>
-    </header>
-
-    <!-- Menu lateral (só aparece no mobile) -->
-    <nav id="mobile-menu" class="mobile-menu">
-        <ul>
-            <li><a href="#home">Início</a></li>
-            <li><a href="#sobre">Sobre</a></li>
-            <li><a href="#servicos">Serviços</a></li>
-            <li><a href="#contato">Contato</a></li>
+        <ul class="menu">
+            <li><a href="#">Início</a></li>
+            <li><a href="#">Sobre</a></li>
+            <li><a href="#">Ajuda</a></li>
+            <li><a href="#">Serviços</a></li>
+            <li><a href="#">Meus Produtos</a></li>
         </ul>
-    </nav>
-    <!-- ===== PRIMEIRA TELA ===== -->
-    <header class="hero">
-        <div class="hero-container">
-            <!-- Lado Esquerdo: Frase de Impacto -->
-            <div class="hero-text">
-                <h1>Segurança inteligente, do jeito que você precisa.</h1>
-                <p>Consultoria e soluções de segurança com tecnologia IoT, tudo em um só lugar.</p>
-                <a href="#" class="btn btn-primary">Adquirir meu cofre</a>
-            </div>
-            <div class="hero-image">
-                <img src="assets/cofre.jpg" alt="Cofre Inteligente">
-            </div>
-        </div>
+        </nav>
     </header>
 
-    <div id="offlineScreen">
-        <img src="img/offline.png" alt="Sem Internet">
-        <p>Sem conexão com a internet.</p>
-    </div>
+    <main class="hero container">
+        <div class="hero-content">
+            <h1>A defesa que observa: Cadeado digital<br>com câmera e sensor de proximidade integrado</h1>
+            <p class="lead">Proteção física com inteligência visual. Monitoramento em tempo real, alertas via Web e segurança de ponta para seus bens.</p>
+
+            <div class="buttons">
+                <a class="btn btn-primary" href="#">Adquira nossos serviços</a>
+                <a class="btn btn-ghost" href="#">Conheça mais sobre a Nimbus</a>
+            </div>
+
+            <div class="cards">
+                <div class="card">
+                    <h3>Proteção Avançada</h3>
+                    <p>Soluções modernas para garantir a segurança digital em todos os níveis, da navegação pessoal à infraestrutura corporativa.</p>
+                </div>
+                <div class="card">
+                    <h3>Inovação</h3>
+                    <p>Recursos de ponta que unem performance, confiabilidade e inteligência para enfrentar os desafios atuais.</p>
+                </div>
+                <div class="card">
+                    <h3>Confiança</h3>
+                    <p>Compromisso com práticas seguras, dados protegidos e comunicação clara para fortalecer sua confiança online.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-image">
+            <img src="assets/cadeado-bg.png" alt="Cadeado Digital">
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 Nimbus - Segurança e Tecnologia</p>
+    </footer>
 
     <script src="js/script.js"></script>
-</body>
+    </body>
 </html>
