@@ -1,0 +1,59 @@
+/* Reseta padrões */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    font-family: var(--font-family);
+    line-height: 1.6;
+}
+
+/* NAVBAR */
+.header {
+    background: var(--secondary-color);
+    padding: 40px 50px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar .logo img {
+    width: 200px;
+}
+
+.navbar .logo span {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 0.95rem;
+    transition: 0.3s;
+}
+
+.navbar ul li a:hover,
+.navbar ul li a:focus {
+    color: var(--primary-color);
+}
