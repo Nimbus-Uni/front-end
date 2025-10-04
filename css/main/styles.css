@@ -12,6 +12,104 @@ body {
     line-height: 1.6;
 }
 
+/* =======================
+    TELA DE CARREGAMENTO
+    ======================= */
+#loading-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: var(--secondary-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+#loading-screen p {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.loader {
+    border: 6px solid rgba(255, 255, 255, 0.1);
+    border-top: 6px solid var(--primary-color);
+    border-radius: 50%;
+    width: 60px; height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* =======================
+    
+    ======================= */
+#offline-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #0B161D;
+    color: var(--text-color);
+    display: none; /* só aparece quando offline */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.offline-box {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 350px;
+}
+
+.offline-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+
+/* ===== Scrollbar ===== */
+
+/* Largura */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+/* Trilho (fundo do scroll) */
+::-webkit-scrollbar-track {
+    background: #0B161D;
+    border-radius: 10px;
+}
+
+/* Barra (scroll em si) */
+::-webkit-scrollbar-thumb {
+    background: #2C9CFF;
+    border-radius: 10px;
+    border: 2px solid #0B161D;
+}
+
+/* Barra quando passa o mouse */
+::-webkit-scrollbar-thumb:hover {
+    background: #1784E8;
+}
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #2C9CFF #0B161D;
+}
+
 /* NAVBAR */
 .header {
     background: var(--secondary-color);
@@ -58,11 +156,29 @@ body {
     color: var(--primary-color);
 }
 
+.menu a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.menu a .icon {
+    display: inline-flex;
+    width: 18px;
+    height: 18px;
+}
+
+.menu a .icon svg {
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+}
+
 /* HERO SECTION */
 .hero {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     min-height: 90vh;
     padding: 0px 60px 0 60px;
     gap: 40px;
