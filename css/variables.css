@@ -5,4 +5,7 @@
     --text-muted: #9AA5B1;
     --card-bg: #1C2A35;
     --font-family: 'Inter', Arial, sans-serif;
+    --status-ok: #28a745;         /* Verde para status OK */
+    --status-aviso: #ffc107;      /* Amarelo para status Aviso */
+    --status-emergencia: #dc3545; /* Vermelho para status Emergência */
 }
