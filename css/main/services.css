@@ -3,18 +3,17 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
 body {
-    background-color: var(--secondary-color);
-    color: var(--text-color);
-    font-family: var(--font-family);
-    line-height: 1.6;
+    background-color: #101E27;
+    color: #fff;
 }
 
 /* =======================
     TELA DE CARREGAMENTO
-    ======================= */
+   ======================= */
 #loading-screen {
     position: fixed;
     top: 0; left: 0;
@@ -49,15 +48,15 @@ body {
 }
 
 /* =======================
-    tela offline
-    ======================= */
+    TELA OFFLINE
+   ======================= */
 #offline-screen {
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
     background: #0B161D;
     color: var(--text-color);
-    display: none; /* só aparece quando offline */
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -77,40 +76,32 @@ body {
     margin-bottom: 10px;
 }
 
-
 /* ===== Scrollbar ===== */
-
-/* Largura */
 ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
 }
-
-/* Trilho (fundo do scroll) */
 ::-webkit-scrollbar-track {
     background: #0B161D;
     border-radius: 10px;
 }
-
-/* Barra (scroll em si) */
 ::-webkit-scrollbar-thumb {
     background: #2C9CFF;
     border-radius: 10px;
     border: 2px solid #0B161D;
 }
-
-/* Barra quando passa o mouse */
 ::-webkit-scrollbar-thumb:hover {
     background: #1784E8;
 }
-
 /* Firefox */
 * {
     scrollbar-width: thin;
     scrollbar-color: #2C9CFF #0B161D;
 }
 
-/* NAVBAR */
+/* =======================
+    NAVBAR (corrigido)
+   ======================= */
 .header {
     background: var(--secondary-color);
     padding: 40px 50px 0;
@@ -130,12 +121,7 @@ body {
 }
 
 .navbar .logo img {
-    width: 200px;
-}
-
-.navbar .logo span {
-    font-size: 1.2rem;
-    font-weight: 600;
+    width: 200px; /* igual ao styles.css */
 }
 
 .navbar ul {
@@ -172,4 +158,189 @@ body {
     width: 100%;
     height: 100%;
     fill: currentColor;
+}
+
+/* =======================
+    CONTEÚDO DA PÁGINA (carrossel + texto)
+   ======================= */
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px;
+    gap: 40px;
+}
+
+.text {
+    width: 50%;
+}
+
+.subtitle {
+    color: #1DA1FB;
+    font-size: 14px;
+}
+
+h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 10px 0 20px;
+}
+
+.desc {
+    color: #b0c4de;
+    font-size: 14px;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #1DA1FB;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background-color: #172935;
+}
+
+/* =======================
+    CARROSSEL
+   ======================= */
+.carousel {
+    position: relative;
+    width: 40%;
+    background-color: #11253d;
+    border-radius: 15px;
+    padding: 20px;
+    overflow: hidden;
+    max-width: 100%;
+}
+
+.carousel img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.info {
+    margin-top: 15px;
+}
+
+.info h3 {
+    color: #1DA1FB;
+    margin-bottom: 10px;
+}
+
+.info ul {
+    margin-top: 10px;
+    list-style: disc;
+    margin-left: 20px;
+    color: #b0c4de;
+    font-size: 14px;
+}
+
+.arrow {
+    position: absolute;
+    top: 45%;
+    background: none;
+    border: none;
+    color: #1DA1FB;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 10; /* garante que fique acima do slide */
+    transform: translateY(-50%); /* ajusta exatamente no meio */
+}
+
+.arrow.left {
+    left: 4px; /* mover para dentro do carousel */
+}
+
+.arrow.right {
+    right: 6px; /* mover para dentro do carousel */
+}
+
+.slide {
+    display: none;
+}
+
+.slide.active {
+    display: block;
+}
+
+/* =======================
+    ADIÇÕES: SEÇÃO "NOSSOS SERVIÇOS"
+    (extraídas do segundo CSS, sem duplicar reset/header/loading/scrollbar)
+   ======================= */
+
+.services-container {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.services-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 15px;
+    border-left: 6px solid var(--primary-color);
+    padding-left: 15px;
+}
+.services-header p {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 850px;
+    margin-bottom: 60px;
+}
+
+/* GRID */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 30px;
+}
+
+/* CARDS COM EFEITO PREMIUM */
+.service-card {
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(6px);
+    border-radius: 14px;
+    padding: 30px 26px;
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+    transition: all 0.35s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+.service-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+}
+.service-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 12px 0;
+}
+.service-card p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* Ícones nos Cards */
+.card-icon {
+    font-size: 2rem;
+    color: var(--primary-color);
+    background: rgba(44,156,255,0.15);
+    width: 60px; height: 60px;
+    display:flex;justify-content:center;align-items:center;
+    border-radius: 12px;
 }

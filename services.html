@@ -1,38 +1,41 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Nimbus - Segurança e Tecnologia</title>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Nimbus - Segurança e Tecnologia</title>
 
-    <!-- Fonte Inter (Google Fonts) -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+        <!-- Fonte Inter -->
+        <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet"
+        />
 
-    <!-- Variáveis e estilos -->
-    <link rel="stylesheet" href="css/variables.css" />
-    <link rel="stylesheet" href="css/main/services.css" />
-    <link rel="stylesheet" href="css/responsive/responsiveHome.css" />
-    <link rel="stylesheet" href="css/animation/animations.css" />
-  </head>
-  <body>
+        <!-- Variáveis e estilos -->
+        <link rel="stylesheet" href="css/variables.css" />
+        <link rel="stylesheet" href="css/main/services.css" />
+        <link rel="stylesheet" href="css/responsive/responsiveHome.css" />
+        <link rel="stylesheet" href="css/animation/animations.css" />
+    </head>
+
+    <body>
         <!-- Tela de Carregamento -->
-    <div id="loading-screen">
+        <div id="loading-screen">
         <div class="loader"></div>
         <p>Carregando...</p>
-    </div>
+        </div>
 
-    <!-- Tela Offline -->
-    <div id="offline-screen">
+        <!-- Tela Offline -->
+        <div id="offline-screen">
         <div class="offline-box">
             <div class="offline-icon">📶❌</div>
             <h2>Você está offline</h2>
             <p>Verifique sua conexão com a internet.</p>
         </div>
-    </div>
-    <header class="header">
+        </div>
+
+        <!-- Cabeçalho -->
+        <header class="header">
         <nav class="navbar container">
             <div class="logo">
                 <img src="assets/logo.png" alt="Nimbus Logo">
@@ -47,7 +50,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="services.html">
+                    <a href="sobre.html">
                     <span class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="6" r="4" fill="currentColor"/><path fill="currentColor" d="M20 17.5c0 2.485 0 4.5-8 4.5s-8-2.015-8-4.5S7.582 13 12 13s8 2.015 8 4.5"/></svg>
                     </span>
@@ -79,8 +82,138 @@
                     </a>
                 </li>
             </ul>
-      </nav>
+
+        </nav>
     </header>
-    <script src="js/script.js"></script>
-  </body>
+
+        <!-- ====================== -->
+        <!-- 1️⃣ PRIMEIRA SEÇÃO: CARROSSEL -->
+        <!-- ====================== -->
+        <main class="content">
+        <div class="text">
+            <p class="subtitle">Veja nosso catálogo de produtos</p>
+            <h2>Protegendo hoje,<br />Preparando para o amanhã</h2>
+            <p class="desc">
+            Descubra soluções inteligentes e seguras que protegem seus dados, sua
+            empresa e suas operações. Cada produto foi desenvolvido para oferecer
+            tecnologia de ponta com confiabilidade e desempenho.
+            </p>
+            <p class="desc">
+            Seja para segurança digital, monitoramento ou ferramentas de gestão
+            tecnológica, nossos produtos combinam inovação e eficiência.
+            </p>
+            <a href="#" class="btn">Explore nossas soluções</a>
+        </div>
+
+        <div class="carousel">
+            <button class="arrow left">❮</button>
+
+            <div class="slide active">
+            <img src="assets/cofre.png" alt="Cofre Automatizado" />
+            <div class="info">
+                <h3>Cofre Automatizado</h3>
+                <p>
+                O Cofre Nimbus é uma solução de segurança avançada, criada para
+                proteger seus materiais com total eficiência, ligada com sistema
+                centralizado por segurança digital.
+                </p>
+                <ul>
+                <li>Controle de acesso digital com cartão.</li>
+                <li>Registro de logs e histórico de aberturas.</li>
+                <li>Acesso remoto via Web e App.</li>
+                </ul>
+            </div>
+            </div>
+
+            <div class="slide">
+            <img src="assets/camera.png" alt="Câmera de Segurança" />
+            <div class="info">
+                <h3>Câmera de Segurança</h3>
+                <p>
+                Monitoramento 24h com gravação em nuvem e alertas em tempo real
+                para manter seu ambiente seguro.
+                </p>
+                <ul>
+                <li>Visão noturna avançada.</li>
+                <li>Detecção de movimento inteligente.</li>
+                <li>Acesso remoto via app.</li>
+                </ul>
+            </div>
+            </div>
+
+            <button class="arrow right">❯</button>
+        </div>
+        </main>
+
+        <!-- ====================== -->
+        <!-- 2️⃣ SEGUNDA SEÇÃO: NOSSOS SERVIÇOS -->
+        <!-- ====================== -->
+        <section class="services-container">
+        <div class="services-header">
+            <h1>Nossos Serviços</h1>
+            <p>
+            Soluções integradas de segurança e tecnologia para garantir
+            maior controle, eficiência e tranquilidade para a sua empresa
+            e seus clientes.
+            </p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+            <div class="card-icon">🔒</div>
+            <h3>Venda do Cadeado Inteligente</h3>
+            <p>
+                Cadeados com leitor biométrico e câmera integrada. Elimine chaves físicas,
+                reduza custos e garanta confiabilidade com tecnologia moderna.
+            </p>
+            </div>
+
+            <div class="service-card">
+            <div class="card-icon">⚙</div>
+            <h3>Instalação Profissional</h3>
+            <p>
+                Instalação completa feita por especialistas, garantindo padronização,
+                conformidade e funcionamento imediato sem impactar operações.
+            </p>
+            </div>
+
+            <div class="service-card">
+            <div class="card-icon">📞</div>
+            <h3>Suporte Técnico 24/7</h3>
+            <p>
+                Atendimento especializado 24 horas por dia, 7 dias por semana,
+                para emergências e ajustes, assegurando continuidade das operações.
+            </p>
+            </div>
+
+            <div class="service-card">
+            <div class="card-icon">📡</div>
+            <h3>Plano de Monitoramento Remoto</h3>
+            <p>
+                Monitore o status dos cadeados em tempo real, receba alertas automáticos
+                e mantenha o controle total via aplicativo, com precisão e agilidade.
+            </p>
+            </div>
+
+            <div class="service-card">
+            <div class="card-icon">🛠</div>
+            <h3>Manutenção Preventiva</h3>
+            <p>
+                Inspeções preventivas, ajustes técnicos e garantia estendida,
+                aumentando a durabilidade, reduzindo falhas e maximizando ROI.
+            </p>
+            </div>
+
+            <div class="service-card">
+            <div class="card-icon">🔧</div>
+            <h3>Acessórios e Peças Originais</h3>
+            <p>
+                Componentes e baterias originais, mantendo desempenho, qualidade
+                e compatibilidade do sistema para operação contínua e segura.
+            </p>
+            </div>
+        </div>
+    </section>
+    <script src="js/services.js"></script>
+    </body>
 </html>
