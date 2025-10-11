@@ -173,3 +173,173 @@ body {
     height: 100%;
     fill: currentColor;
 }
+/* Título principal da página */
+.page-title {
+    text-align: center; /* <<< CORREÇÃO: Centraliza todo o texto dentro desta seção */
+    margin: 4rem 0;     /* Aumenta o espaçamento vertical */
+}
+
+.page-title .lead {
+    color: var(--primary-color); /* <<< CORREÇÃO: Aplica a cor da imagem */
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.page-title h1 { /* <<< CORREÇÃO: Estiliza a tag h1 diretamente, e não a classe .h1 */
+    font-size: 2.5rem;
+    font-weight: 700; /* O texto na imagem é mais grosso (bold) */
+    line-height: 1.4;
+    color: #ffffff;
+}
+
+/* Filtros de logs */
+.log-filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--card-bg);
+    padding-bottom: 1rem;
+}
+
+.filter-tabs .btn-tab {
+    background: none;
+    border: 1px solid var(--text-muted);
+    color: var(--text-muted);
+    padding: 0.5rem 1.2rem;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-right: 0.75rem;
+    font-family: var(--font-family);
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+/* <<< CORREÇÃO: Estilo para o botão de filtro ATIVO (Mais Recentes/Todos) */
+.filter-tabs .btn-tab.active,
+.filter-tabs .btn-tab:hover {
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+    font-weight: 600;
+}
+
+/* <<< CORREÇÃO: Estilo para o link "Mais Antigos" */
+.filter-actions a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+.filter-actions a:hover {
+    color: var(--accent-color);
+}
+
+/* O estilo do h2 permanece o mesmo */
+.log-feed h2 {
+    color: #fff;
+    margin: 2rem 0 1rem 0;
+    font-size: 1.2rem;
+}
+
+
+.log-group {
+    display: grid; /* Mantém o display grid, que está correto */
+
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    
+    gap: 1.5rem; /* O espaçamento entre os cards */
+}
+
+
+.log-card {
+    background: var(--card-bg);
+    padding: 2rem; 
+    border-radius: 8px; /* Mudei para 8px, que é um pouco mais suave como na imagem */
+    border: 1px solid #121a2b;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+
+.card-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.card-header h3 {
+    flex-grow: 1;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #f7f7f7;
+}
+
+.log-id {
+    font-size: 0.7rem;
+    color: var(--accent-color);
+    background-color: #11222e;
+    border-radius: 10%;
+   
+}   
+
+.status {
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #fff;
+}
+
+.status-ok { background-color: var(--status-ok); }
+.status-aviso { background-color: var(--status-aviso); color: var(--secondary-color); }
+.status-emergencia { background-color: var(--status-emergencia); }
+
+.card-body p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.card-footer {
+    margin-top: auto;
+    
+}
+
+.btn-ghost {
+    background: #1DA1FB;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 0.5rem 1rem;
+    border-radius: 6rem;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.btn-ghost:hover {
+    background-color: rgba(6, 255, 197, 0.1);
+}
+.menu a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.menu a .icon {
+    display: inline-flex;
+    width: 18px;
+    height: 18px;
+}
+
+.menu a .icon svg {
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+}
+.footer{
+    margin-left:  47rem;
+}
