@@ -113,7 +113,7 @@ body {
 /* NAVBAR */
 .header {
     background: var(--secondary-color);
-    padding: 40px 50px 0;
+    padding: 40px 50px 0px;
     border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
@@ -255,7 +255,7 @@ body {
 .log-card {
     background: var(--card-bg);
     padding: 2rem; 
-    border-radius: 8px; /* Mudei para 8px, que é um pouco mais suave como na imagem */
+    border-radius: 8px; 
     border: 1px solid #121a2b;
     display: flex;
     flex-direction: column;
