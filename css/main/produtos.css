@@ -173,6 +173,7 @@ body {
     height: 100%;
     fill: currentColor;
 }
+
 /* Título principal da página */
 .page-title {
     text-align: center; /* <<< CORREÇÃO: Centraliza todo o texto dentro desta seção */
@@ -249,6 +250,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
     
     gap: 1.5rem; /* O espaçamento entre os cards */
+
 }
 
 
@@ -260,6 +262,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    
 }
 
 
@@ -309,8 +312,8 @@ body {
 
 .btn-ghost {
     background: #1DA1FB;
-    border: 1px solid var(--accent-color);
-    color: var(--accent-color);
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
     padding: 0.5rem 1rem;
     border-radius: 6rem;
     cursor: pointer;
@@ -343,3 +346,7 @@ body {
 .footer{
     margin-left:  47rem;
 }
+main.container {
+  padding: 0 4rem;
+}
+
