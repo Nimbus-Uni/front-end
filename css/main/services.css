@@ -3,12 +3,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
 }
 
 body {
     background-color: #101E27;
     color: #fff;
+    font-family: var(--font-family);
+    line-height: 1.6;
 }
 
 /* =======================

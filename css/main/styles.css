@@ -126,7 +126,7 @@ body {
 .navbar .logo {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
 }
 
 .navbar .logo img {
