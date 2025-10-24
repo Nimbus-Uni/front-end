@@ -17,8 +17,10 @@ body {
     ======================= */
 #loading-screen {
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: var(--secondary-color);
     color: var(--text-color);
     display: flex;
@@ -39,13 +41,19 @@ body {
     border: 6px solid rgba(255, 255, 255, 0.1);
     border-top: 6px solid var(--primary-color);
     border-radius: 50%;
-    width: 60px; height: 60px;
+    width: 60px;
+    height: 60px;
     animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* =======================
@@ -53,11 +61,14 @@ body {
     ======================= */
 #offline-screen {
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: #0B161D;
     color: var(--text-color);
-    display: none; /* só aparece quando offline */
+    display: none;
+    /* só aparece quando offline */
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -114,7 +125,7 @@ body {
 .header {
     background: var(--secondary-color);
     padding: 40px 50px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .navbar {
@@ -172,4 +183,195 @@ body {
     width: 100%;
     height: 100%;
     fill: currentColor;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#barra-pesquisa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+#barra-pesquisa div {
+    display: flex;
+    align-items: center;
+    background-color: #172935;
+    width: 600px;
+    height: 45px;
+    border-radius: 15px;
+    opacity: 0.5;
+}
+
+#barra-pesquisa div input {
+    padding-left: 5px;
+    background-color: transparent;
+    border: none;
+    color:white;
+    width: 100%;
+    padding-right: 15px;
+
+}
+#barra-pesquisa div input:focus {
+    outline: none;
+
+}
+
+#barra-pesquisa div svg {
+    margin-left: 10px;
+}
+
+#duvida-1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+#duvida-1 main {
+    display: flex;
+    flex-direction: column;
+    background-color: #172935;
+    width: 800px;
+    border-radius: 15px;
+    text-align: justify;
+    padding: 0px 20px;
+
+}
+#duvida-1 main div{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#duvida-1 main div button{
+    background-color: transparent;
+    border:none;
+    color:white;
+}
+#duvida-1 main div svg{
+    width: 25px;
+    height: 25px;
+   
+}
+
+#duvida-1 h3 {
+    padding-top: 20px;
+    padding-bottom: 20px ;
+    
+}
+
+#duvida-1 p {
+    font-size: 15px;
+    padding-bottom: 20px;
+    display: none;
+}
+
+#formulario {
+    background-color: #172935;
+    width: 450px;
+    border-radius: 15px;
+}
+#email {
+    padding-top: 15px;
+    padding-left: 30px;
+}
+#email-input{
+    margin-top: 10px;
+    border-radius: 10px;
+    width: 380px;
+    height: 30px;
+    padding-left: 10px;
+
+}
+#email-input:focus {
+    outline: none;
+
+}
+#assunto{
+    margin-top: 30px;
+    padding-left: 30px;
+    padding-right: 15px;
+}
+#assunto-input{
+    margin-top: 10px;
+    border-radius: 10px;
+    width: 380px;
+    height: 30px;
+    padding-left: 10px;
+
+}
+#assunto-input:focus {
+    outline: none;
+}
+#paragrafo{
+    margin-top: 30px;
+    padding-left: 30px;
+    padding-right: 15px;
+}
+#paragrafo-input{
+    margin-top: 10px;
+    border-radius: 10px;
+    width: 380px;
+    height: 150px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    font-family: var(--font-family);
+    font-size: 13px;
+}
+#paragrafo-input:focus {
+    outline: none;
+}
+#mandar{
+    width: 100%;
+    display:flex;
+    justify-content: center;
+}
+#enviar{
+    background-color: #1DA1FB;
+    width: 380px;
+    height: 30px;
+    border-radius: 5px;
+    margin-left: -10px;
+    margin-bottom: 10px;
+}
+#enviar:active, #enviar:focus {
+    outline: none;
+}
+#bloco{
+    margin-top: 80px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+}
+#bloco-duvida{
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 400px;
+}
+#bloco-duvida #sub-titulo{
+    color:#1DA1FB;
+}
+#bloco-duvida #titulo{
+    margin-top: -5px;
+    text-align: left;
+    font-size: 30px;
+}
+#bloco-duvida #paragrafo-1{
+    margin: 10px 0px;
+    font-size: 13px;
+}
+#bloco-duvida #paragrafo-2{
+    margin: 10px 0px;
+    font-size: 13px;
+}#bloco-duvida #paragrafo-3{
+    margin: 25px 0px;
+    font-size: 13px;
 }
