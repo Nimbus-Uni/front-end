@@ -1,175 +1,360 @@
 /* Reseta padrões */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: #2c9cff #0b161d;
+}
+:root {
+  --primary-color: #1da1fb; /* Azul dos botões */
+  --secondary-color: #101e27; /* Fundo */
+  --text-color: #ffffff;
+  --text-muted: #9aa5b1;
+  --card-bg: #1c2a35;
+  --font-family: "Inter", Arial, sans-serif;
+  --status-ok: #28a745; /* Verde para status OK */
+  --status-aviso: #ffc107; /* Amarelo para status Aviso */
+  --status-emergencia: #dc3545; /* Vermelho para status Emergência */
 }
 
 body {
-    background-color: var(--secondary-color);
-    color: var(--text-color);
-    font-family: var(--font-family);
-    line-height: 1.6;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
+  line-height: 1.6;
 }
-
+main {
+  margin-inline: 5%; /* Adiciona 20px nas laterais do conteúdo */
+}
 /* =======================
     TELA DE CARREGAMENTO
     ======================= */
 #loading-screen {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: var(--secondary-color);
-    color: var(--text-color);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--secondary-color);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
 }
 
 #loading-screen p {
-    margin-top: 20px;
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--text-muted);
+  margin-top: 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-muted);
 }
 
 .loader {
-    border: 6px solid rgba(255, 255, 255, 0.1);
-    border-top: 6px solid var(--primary-color);
-    border-radius: 50%;
-    width: 60px; height: 60px;
-    animation: spin 1s linear infinite;
+  border: 6px solid rgba(255, 255, 255, 0.1);
+  border-top: 6px solid var(--primary-color);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* =======================
     tela offline
     ======================= */
 #offline-screen {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: #0B161D;
-    color: var(--text-color);
-    display: none; /* só aparece quando offline */
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 10000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0b161d;
+  color: var(--text-color);
+  display: none; /* só aparece quando offline */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
 }
 
 .offline-box {
-    background: var(--card-bg);
-    padding: 30px;
-    border-radius: 12px;
-    text-align: center;
-    max-width: 350px;
+  background: var(--card-bg);
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 350px;
 }
 
 .offline-icon {
-    font-size: 2rem;
-    margin-bottom: 10px;
+  font-size: 2rem;
+  margin-bottom: 10px;
 }
-
 
 /* ===== Scrollbar ===== */
 
 /* Largura */
 ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+  width: 10px;
+  height: 10px;
 }
 
 /* Trilho (fundo do scroll) */
 ::-webkit-scrollbar-track {
-    background: #0B161D;
-    border-radius: 10px;
+  background: #0b161d;
+  border-radius: 10px;
 }
 
 /* Barra (scroll em si) */
 ::-webkit-scrollbar-thumb {
-    background: #2C9CFF;
-    border-radius: 10px;
-    border: 2px solid #0B161D;
+  background: #2c9cff;
+  border-radius: 10px;
+  border: 2px solid #0b161d;
 }
 
 /* Barra quando passa o mouse */
 ::-webkit-scrollbar-thumb:hover {
-    background: #1784E8;
-}
-
-/* Firefox */
-* {
-    scrollbar-width: thin;
-    scrollbar-color: #2C9CFF #0B161D;
+  background: #1784e8;
 }
 
 /* NAVBAR */
 .header {
-    background: var(--secondary-color);
-    padding: 40px 50px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+  background: var(--secondary-color);
+  padding: 40px 50px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .navbar .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .navbar .logo img {
-    width: 200px;
+  width: 200px;
 }
 
 .navbar .logo span {
-    font-size: 1.2rem;
-    font-weight: 600;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 .navbar ul {
-    display: flex;
-    list-style: none;
-    gap: 30px;
+  display: flex;
+  list-style: none;
+  gap: 30px;
 }
 
 .navbar ul li a {
-    text-decoration: none;
-    color: var(--text-color);
-    font-size: 0.95rem;
-    transition: 0.3s;
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 0.95rem;
+  transition: 0.3s;
 }
 
 .navbar ul li a:hover,
 .navbar ul li a:focus {
-    color: var(--primary-color);
+  color: var(--primary-color);
 }
 
 .menu a {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .menu a .icon {
-    display: inline-flex;
-    width: 18px;
-    height: 18px;
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
 }
 
 .menu a .icon svg {
-    width: 100%;
-    height: 100%;
-    fill: currentColor;
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+/* INICIO TITULO */
+
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.list h1 {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.list p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* SOBRE A EMPRESA */
+
+.about-text {
+  max-width: 550px;
+  text-align: justify;
+  margin-top: 30px;
+}
+.about-text h2 {
+  color: var(--primary-color);
+  font-size: 20px;
+}
+.about-container {
+  /* Alinha topo do texto com imagem */
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  margin-top: 50px;
+}
+
+.about-image img {
+  /* Ajustar o tamanho da imagem */
+  max-width: 400px;
+  height: auto;
+}
+
+/* === O QUE NOS GUIA=== */
+
+.topics-container {
+  margin: 35px 0;
+  display: flex;
+  gap: 30px;
+  justify-content: space-between;
+}
+.topics-titulo h2 {
+  margin: 10px 0;
+}
+
+.topics {
+  background-color: var(--card-bg);
+  padding: 35px;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.topics h3 {
+  color: var(--primary-color);
+  padding: 5px;
+  margin-bottom: 5px;
+}
+h2 {
+  color: var(--primary-color);
+  font-size: 20px;
+}
+/* === FIM VALORES === */
+
+/* === CRIADORES + ANIMAÇÃO INFINITA === */
+.team {
+  margin: 50px 0;
+}
+
+.scroll {
+  margin-top: 30px;
+  margin-inline: auto;
+  padding: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 100%;
+  mask: linear-gradient(to right, transparent, #fff 15%, red 85%, transparent);
+}
+
+#scroll-container {
+  background-color: var(--secondary-color);
+  border: 1px solid var(#1da1fb);
+  margin: 15px;
+  padding-left: 20px;
+  gap: 20px;
+  width: max-content;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  animation: scrollinfinito 25s linear infinite; /* ANIMAÇÃO infinita */
+  will-change: transform;
+}
+
+#scroll-container::after {
+  content: "";
+  display: flex;
+  width: 100%;
+}
+
+.scroll_item {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  padding: 25px;
+  border-radius: 10px;
+  width: 350px;
+  height: 320px;
+
+  flex: 0 0 auto;
+  width: 200px;
+  height: 350px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.scroll_item:hover {
+  transform: scale(1.03);
+  transition: transform 0.3s ease;
+}
+.scroll_wrapper {
+  display: flex;
+  animation: scroll 20s linear infinite;
+}
+
+@keyframes scrollinfinito {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.scroll_item h3 {
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: var(--text-color);
+}
+
+.scroll_item p {
+  font-size: 14px;
+  color: var(--primary-color);
+}
+
+.scroll_item img {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza horizontalmente */
+  text-align: center; /* Centraliza o texto também */
+  width: 150px;
+  height: 250px;
 }
