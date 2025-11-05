@@ -216,7 +216,7 @@ main {
 /* SOBRE A EMPRESA */
 
 .about-text {
-  max-width: 550px;
+  max-width: 600px;
   text-align: justify;
   margin-top: 30px;
 }
@@ -228,8 +228,8 @@ main {
   /* Alinha topo do texto com imagem */
   display: flex;
   align-items: flex-start;
-  gap: 40px;
-  margin-top: 50px;
+  gap: 150px;
+  margin: 50px;
 }
 
 .about-image img {
