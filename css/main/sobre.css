@@ -307,7 +307,7 @@ h2 {
 
 /* === CRIADORES + ANIMAÇÃO INFINITA === */
 .team {
-  margin: 50px 0;
+  margin: 50px 0 0 0;
   text-align: center;
 }
 
@@ -316,7 +316,8 @@ h2 {
   padding: 20px;
   border-radius: 10px;
   overflow: hidden;
-  width: 1200px;
+  width: 100%;
+  max-width: 1200px;
   mask: linear-gradient(to right, transparent, #fff 15%, red 85%, transparent);
 }
 
@@ -352,7 +353,7 @@ h2 {
   align-items: center;
   text-align: center;
   width: 210px;
-  height: 295px;
+  height: 295px;  
 }
 
 .scroll_item:hover {
@@ -378,11 +379,13 @@ h2 {
   margin-bottom: 5px;
   color: var(--text-color);
   margin-top: 20px;
+  padding: 0 7px;
 }
 
 .scroll_item p {
   font-size: 14px;
   color: var(--primary-color);
+  padding: 0 7px;
 }
 
 .scroll_item img {
@@ -430,6 +433,14 @@ h2 {
   }
 
   .topics-titulo h2 {
+    font-size: 17px;
+  }
+
+  .team h1 {
+    font-size: 25px;
+  }
+
+  .team h2 {
     font-size: 17px;
   }
 }
@@ -480,7 +491,7 @@ h2 {
   }
 
   .topics h3 {
-    font-size: 16px;;
+    font-size: 16px;
   }
 
   .topics p {
@@ -528,5 +539,26 @@ h2 {
 
   .topics {
     width: 100%;
+  }
+
+  .team {
+    margin-top: 13px;
+  }
+
+  .team h1 {
+    font-size: 20px;
+  }
+
+  .team h2 {
+    font-size: 15px;
+  }
+
+  .scroll_item {
+    width: 160px;
+    height: 240px;
+  }
+
+  .scroll_item img {
+    height: 130px;
   }
 }
