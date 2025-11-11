@@ -49,6 +49,8 @@ revealOnScroll();
 
 // Cria clone do container do carrosel
 
+let pos;
+
 window.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("scroll-container");
   container.innerHTML += container.innerHTML;

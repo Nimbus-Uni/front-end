@@ -207,7 +207,7 @@ body {
    ======================= */
 .carousel {
   position: relative;
-  background-color: #11253d;
+  background: rgba(255, 255, 255, 0.03);
   border-radius: 15px;
   overflow: hidden;
   width: 800px;
@@ -235,6 +235,10 @@ body {
 }
 
 .info p:nth-child(3) {
+  padding-top: 20px;
+}
+
+.info p:nth-child(4) {
   padding-top: 20px;
 }
 
@@ -292,6 +296,28 @@ body {
 
 .arrow.right {
   right: -40px; /* mover para dentro do carousel */
+}
+
+#index-1 {
+  width: 30px;
+  height: 12px;
+  position: absolute;
+  border-radius: 50px;
+  background-color: #1da1fb;
+  left: 45%;
+  bottom: -7%;
+  transition: all 0.02s linear 0.02s;
+}
+
+#index-2 {
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  border-radius: 50px;
+  background-color: white;
+  left: 50%;
+  bottom: -7%;
+  transition: all 0.02s linear 0.02s;
 }
 
 .slide {
