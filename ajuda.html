@@ -233,18 +233,44 @@
       emailjs.init("ebFZI4YSXFPu0IQTC");
 
       const form = document.getElementById("formulario");
+      const email = document.getElementById("email-input");
+      const assunto = document.getElementById("assunto-input");
+      const paragrafo = document.getElementById("paragrafo-input");
 
-      form.addEventListener("submit", function (e) {
+      function sendEmail(e) {
         e.preventDefault();
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailRegex.test(email.value)) {
+          alert("Por favor insira um email válido!");
+          return;
+        }
+
+        if (assunto.value.length < 9) {
+          alert("Por favor, escreva algum assunto (mínimo 10 caracteres)!");
+          return;
+        }
+
+        if (paragrafo.value.length < 10) {
+          alert(
+            "Por favor escreva algo acerca do assunto (mínimo 10 caracteres)!"
+          );
+          return;
+        }
 
         emailjs
           .sendForm("service_1bbxda5", "template_n8wsixg", form)
           .then(() => {
-            alert("Mensagem enviada para o nosso time de suporte!");
+            alert(
+              "Mensagem enviada para o nosso time de suporte. Muito obrigado pela atenção!"
+            );
             form.reset();
           })
           .catch(() => alert("Erro ao enviar mensagem."));
-      });
+      }
+
+      form.addEventListener("submit", (e) => sendEmail(e));
     </script>
   </body>
 </html>
