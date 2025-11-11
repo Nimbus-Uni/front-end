@@ -251,7 +251,7 @@ body {
 .log-group {
     display: grid; /* Mantém o display grid, que está correto */
 
-    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     
     gap: 1.5rem; /* O espaçamento entre os cards */
 
@@ -345,9 +345,11 @@ body {
     height: 100%;
     fill: currentColor;
 }
+
 .footer{
     margin-left:  47rem;
 }
+
 main.container {
     padding: 0 5rem;
 }

@@ -1,274 +1,305 @@
 /* Reseta padrões */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    background-color: #101E27;
-    color: #fff;
-    font-family: var(--font-family);
-    line-height: 1.6;
+  background-color: #101e27;
+  color: #fff;
+  font-family: var(--font-family);
+  line-height: 1.6;
 }
 
 /* =======================
     TELA DE CARREGAMENTO
    ======================= */
 #loading-screen {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: var(--secondary-color);
-    color: var(--text-color);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--secondary-color);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
 }
 
 #loading-screen p {
-    margin-top: 20px;
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--text-muted);
+  margin-top: 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-muted);
 }
 
 .loader {
-    border: 6px solid rgba(255, 255, 255, 0.1);
-    border-top: 6px solid var(--primary-color);
-    border-radius: 50%;
-    width: 60px; height: 60px;
-    animation: spin 1s linear infinite;
+  border: 6px solid rgba(255, 255, 255, 0.1);
+  border-top: 6px solid var(--primary-color);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* =======================
     TELA OFFLINE
    ======================= */
 #offline-screen {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: #0B161D;
-    color: var(--text-color);
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 10000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0b161d;
+  color: var(--text-color);
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
 }
 
 .offline-box {
-    background: var(--card-bg);
-    padding: 30px;
-    border-radius: 12px;
-    text-align: center;
-    max-width: 350px;
+  background: var(--card-bg);
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 350px;
 }
 
 .offline-icon {
-    font-size: 2rem;
-    margin-bottom: 10px;
+  font-size: 2rem;
+  margin-bottom: 10px;
 }
 
 /* ===== Scrollbar ===== */
 ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+  width: 10px;
+  height: 10px;
 }
 ::-webkit-scrollbar-track {
-    background: #0B161D;
-    border-radius: 10px;
+  background: #0b161d;
+  border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb {
-    background: #2C9CFF;
-    border-radius: 10px;
-    border: 2px solid #0B161D;
+  background: #2c9cff;
+  border-radius: 10px;
+  border: 2px solid #0b161d;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: #1784E8;
+  background: #1784e8;
 }
 /* Firefox */
 * {
-    scrollbar-width: thin;
-    scrollbar-color: #2C9CFF #0B161D;
+  scrollbar-width: thin;
+  scrollbar-color: #2c9cff #0b161d;
 }
 
 /* =======================
     NAVBAR (corrigido)
    ======================= */
 .header {
-    background: var(--secondary-color);
-    padding: 40px 50px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+  background: var(--secondary-color);
+  padding: 40px 50px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .navbar .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .navbar .logo img {
-    width: 200px;
+  width: 200px;
 }
 
 .navbar ul {
-    display: flex;
-    list-style: none;
-    gap: 30px;
+  display: flex;
+  list-style: none;
+  gap: 30px;
 }
 
 .navbar ul li a {
-    text-decoration: none;
-    color: var(--text-color);
-    font-size: 0.95rem;
-    transition: 0.3s;
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 0.95rem;
+  transition: 0.3s;
 }
 
 .navbar ul li a:hover,
 .navbar ul li a:focus {
-    color: var(--primary-color);
+  color: var(--primary-color);
 }
 
 .menu a {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .menu a .icon {
-    display: inline-flex;
-    width: 18px;
-    height: 18px;
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
 }
 
 .menu a .icon svg {
-    width: 100%;
-    height: 100%;
-    fill: currentColor;
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
 }
 
 /* =======================
     CONTEÚDO DA PÁGINA (carrossel + texto)
    ======================= */
 .content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 60px;
-    gap: 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 60px;
 }
 
 .text {
-    width: 50%;
+  width: 40%;
 }
 
 .subtitle {
-    color: #1DA1FB;
-    font-size: 14px;
+  color: #1da1fb;
+  font-size: 17px;
+  font-weight: 700;
 }
 
-h2 {
-    font-size: 32px;
-    font-weight: 700;
-    margin: 10px 0 20px;
+.title {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 20px;
 }
 
 .desc {
-    color: #b0c4de;
-    font-size: 14px;
-    margin-bottom: 15px;
-    line-height: 1.6;
-}
-
-.btn {
-    display: inline-block;
-    background-color: #1DA1FB;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 10px;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-.btn:hover {
-    background-color: #172935;
+  font-size: 14px;
+  margin-bottom: 15px;
+  line-height: 1.6;
 }
 
 /* =======================
     CARROSSEL
    ======================= */
 .carousel {
-    position: relative;
-    width: 40%;
-    background-color: #11253d;
-    border-radius: 15px;
-    padding: 20px;
-    overflow: hidden;
-    max-width: 100%;
+  position: relative;
+  background-color: #11253d;
+  border-radius: 15px;
+  overflow: hidden;
+  width: 800px;
+  height: 400px;
 }
 
 .carousel img {
-    width: 100%;
-    border-radius: 10px;
+  width: 350px;
+  height: 400px;
+  border-radius: 10px 0px 0px 10px;
+  flex-shrink: 0;
+  object-fit: cover;
 }
 
 .info {
-    margin-top: 15px;
+  text-align: justify;
+  padding: 0 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.info p {
+  font-size: 14px;
+}
+
+.info p:nth-child(3) {
+  padding-top: 20px;
 }
 
 .info h3 {
-    color: #1DA1FB;
-    margin-bottom: 10px;
+  color: #1da1fb;
+  margin: 0px 0 10px 0;
+  text-align: center;
+  font-size: 25px;
 }
 
 .info ul {
-    margin-top: 10px;
-    list-style: disc;
-    margin-left: 20px;
-    color: #b0c4de;
-    font-size: 14px;
+  margin-top: 10px;
+  list-style: disc;
+  margin-left: 16px;
+  font-size: 14px;
+}
+
+.info ul li {
+  padding-top: 20px;
+}
+
+.carousel-main {
+  position: relative;
+}
+
+#custom-text {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  width: 95%;
+}
+
+#custom-bar {
+  width: 5px;
+  height: 42px;
+  background-color: #1da1fb;
+  margin-right: 10px;
 }
 
 .arrow {
-    position: absolute;
-    top: 45%;
-    background: none;
-    border: none;
-    color: #1DA1FB;
-    font-size: 30px;
-    cursor: pointer;
-    z-index: 10; /* garante que fique acima do slide */
-    transform: translateY(-50%); /* ajusta exatamente no meio */
+  position: absolute;
+  top: 45%;
+  background: none;
+  border: none;
+  color: #1da1fb;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 10; /* garante que fique acima do slide */
+  transform: translateY(-50%); /* ajusta exatamente no meio */
 }
 
 .arrow.left {
-    left: 4px; /* mover para dentro do carousel */
+  left: -40px;
 }
 
 .arrow.right {
-    right: 6px; /* mover para dentro do carousel */
+  right: -40px; /* mover para dentro do carousel */
 }
 
 .slide {
-    display: none;
+  display: none;
 }
 
 .slide.active {
-    display: block;
+  display: flex;
 }
 
 /* =======================
@@ -276,72 +307,278 @@ h2 {
     (extraídas do segundo CSS, sem duplicar reset/header/loading/scrollbar)
    ======================= */
 
+#services {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
 .services-container {
-    max-width: 1200px;
-    margin: 60px auto;
-    padding: 0 20px;
+  width: 100%;
+  max-width: 1100px;
 }
 
 .services-header h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--text-color);
-    margin-bottom: 15px;
-    border-left: 6px solid var(--primary-color);
-    padding-left: 15px;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 15px;
+  border-left: 6px solid var(--primary-color);
+  padding-left: 15px;
 }
 .services-header p {
-    font-size: 1.05rem;
-    color: var(--text-muted);
-    max-width: 850px;
-    margin-bottom: 60px;
+  font-size: 14px;
+  max-width: 850px;
+  margin-bottom: 40px;
 }
 
 /* GRID */
 .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-    gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
 }
 
 /* CARDS COM EFEITO PREMIUM */
 .service-card {
-    background: rgba(255,255,255,0.03);
-    backdrop-filter: blur(6px);
-    border-radius: 14px;
-    padding: 30px 26px;
-    border: 1px solid rgba(255,255,255,0.06);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.3);
-    transition: all 0.35s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-    overflow: hidden;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(6px);
+  border-radius: 14px;
+  padding: 30px 26px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  transition: all 0.35s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
 }
 .service-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    border-color: var(--primary-color);
-    box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+  transform: translateY(-8px) scale(1.02);
+  border-color: var(--primary-color);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
 }
 .service-card h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--text-color);
-    margin: 12px 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 12px 0;
 }
 .service-card p {
-    font-size: 0.95rem;
-    color: var(--text-muted);
-    line-height: 1.5;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.5;
 }
 
 /* Ícones nos Cards */
 .card-icon {
-    font-size: 2rem;
-    color: var(--primary-color);
-    background: rgba(44,156,255,0.15);
-    width: 60px; height: 60px;
-    display:flex;justify-content:center;align-items:center;
-    border-radius: 12px;
+  font-size: 2rem;
+  color: var(--primary-color);
+  background: rgba(44, 156, 255, 0.15);
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+}
+
+#products {
+  display: none;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 1650px) {
+  #test {
+    width: 1500px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+
+  .content {
+    flex-direction: column;
+  }
+
+  .text {
+    width: 80%;
+  }
+
+  .subtitle {
+    text-align: center;
+  }
+
+  .title {
+    text-align: center;
+  }
+
+  .carousel-main {
+    display: none;
+  }
+
+  #products {
+    display: flex;
+    width: 100%;
+    align-content: center;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .product-card {
+    width: 35%;
+    height: 350px;
+    background-color: #11253d;
+    border-radius: 20px;
+  }
+
+  .product-card .info {
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .product-card h3 {
+    font-size: 20px;
+  }
+
+  .product-card p {
+    text-align: center;
+  }
+
+  .product-card img {
+    width: 100%;
+    height: 200px;
+    flex-shrink: 0;
+    object-fit: cover;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .services-container {
+    width: 72%;
+  }
+
+  .services-container h1 {
+    margin-top: 60px;
+  }
+
+  .services-container p {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .content {
+    padding: 60px 0;
+  }
+
+  .text {
+    width: 85%;
+  }
+
+  .product-card {
+    width: 41%;
+    height: 275px;
+  }
+
+  .product-card img {
+    height: 130px;
+  }
+
+  .title {
+    font-size: 30px;
+  }
+
+  .services-header h1 {
+    font-size: 30px;
+  }
+
+  .services-container {
+    width: 84%;
+  }
+}
+
+@media (max-width: 760px) {
+  .content {
+    padding-bottom: 40px;
+  }
+
+  #products {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product-card {
+    width: 85%;
+    height: 250px;
+  }
+
+  .product-card .info {
+    height: 105px;
+  }
+
+  .title {
+    font-size: 25px;
+  }
+
+  .services-header h1 {
+    font-size: 25px;
+  }
+
+  .services-header p {
+    font-size: 13px;
+  }
+
+  .subtitle {
+    font-size: 15px;
+  }
+
+  .desc {
+    font-size: 13px;
+  }
+
+  #custom-text p {
+    font-size: 13px;
+  }
+
+  .service-card h3 {
+    font-size: 17px;
+  }
+
+  .service-card p {
+    font-size: 14px;
+  }
+
+  .info h3 {
+    font-size: 18px;
+  }
+
+  .info p {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 520px) {
+  .product-card {
+    height: 255px;
+  }
+
+  .info h3 {
+    font-size: 15px;
+  }
+
+  .info p {
+    font-size: 12px;
+  }
 }

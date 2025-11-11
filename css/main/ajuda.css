@@ -369,6 +369,7 @@ h1 {
 
 #bloco-duvida #sub-titulo {
   color: #1da1fb;
+  font-size: 17px;
 }
 
 #bloco-duvida #titulo {
@@ -516,7 +517,11 @@ h1 {
   }
 
   #bloco-duvida #titulo {
-    font-size: 25px;
+    font-size: 20px;
+  }
+
+  #bloco-duvida #sub-titulo {
+    font-size: 15px;
   }
 
   #formulario {

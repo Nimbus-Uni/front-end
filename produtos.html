@@ -140,10 +140,10 @@
 
       <section class="log-filters">
         <div class="filter-tabs">
-          <button class="btn btn-tab active">Todos os Logs</button>
-          <button class="btn btn-tab">Logs de Abertura</button>
-          <button class="btn btn-tab">Logs de Aviso</button>
-          <button class="btn btn-tab">Logs de Emergência</button>
+          <button class="btn btn-tab active" onclick="() => showLogs('all')">Todos os Logs</button>
+          <button class="btn btn-tab" onclick="() => showLogs('close')">Logs de Abertura</button>
+          <button class="btn btn-tab" onclick="() => showLogs('movement')">Logs de Aviso</button>
+          <button class="btn btn-tab" onclick="() => showLogs('open')">Logs de Emergência</button>
         </div>
         <div class="filter-actions">
           <a href="#">Mais Antigos →</a>
@@ -152,100 +152,6 @@
       </section>
 
       <section class="log-feed">
-        <h2>Hoje</h2>
-        <div class="log-group">
-          <article class="log-card">
-            <div class="card-header">
-              <h3>Cofre foi destrancado</h3>
-              <span class="log-id">ID #123891</span>
-              <span class="status status-ok">Status: OK</span>
-            </div>
-            <div class="card-body">
-              <p><strong>Horário:</strong> 12:37 - 28/11/2025</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-ghost">Visualizar Foto</a>
-            </div>
-          </article>
-
-          <article class="log-card">
-            <div class="card-header">
-              <h3>Tentaram acessar o Cofre sem um cartão cadastrado</h3>
-              <span class="log-id">ID #142891</span>
-              <span class="status status-emergencia">Status: Emergência</span>
-            </div>
-            <div class="card-body">
-              <p><strong>Horário:</strong> 12:36 - 28/11/2025</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
-            </div>
-          </article>
-
-          <article class="log-card">
-            <div class="card-header">
-              <h3>O cofre detectou presença</h3>
-              <span class="log-id">ID #103801</span>
-              <span class="status status-aviso">Status: Aviso</span>
-            </div>
-            <div class="card-body">
-              <p><strong>Horário:</strong> 12:35 - 28/11/2025</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
-            </div>
-          </article>
-        </div>
-
-        <h2>Ontem</h2>
-        <div class="log-group">
-          <article class="log-card">
-            <div class="card-header">
-              <h3>O cofre detectou presença</h3>
-              <span class="log-id">ID #153891</span>
-              <span class="status status-aviso">Status: Aviso</span>
-            </div>
-            <div class="card-body">
-              <p><strong>Horário:</strong> 09:22 - 27/11/2025</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
-            </div>
-          </article>
-
-          <article class="log-card">
-            <div class="card-header">
-              <h3>Cofre foi destrancado</h3>
-              <span class="log-id">ID #154112</span>
-              <span class="status status-ok">Status: OK</span>
-            </div>
-            <div class="card-body">
-              <p><strong>Horário:</strong> 14:51 - 27/11/2025</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
-            </div>
-          </article>
-        </div>
-
-        <h2>Semana Passada</h2>
-        <div class="log-group">
-          <article class="log-card">
-            <div class="card-header">
-              <h3>Cofre foi destrancado</h3>
-              <span class="log-id">ID #163891</span>
-              <span class="status status-ok">Status: OK</span>
-            </div>
-            <div class="card-body">
-              <p><strong>Horário:</strong> 15:45 - 25/11/2025</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
-            </div>
-          </article>
-          <article class="log-card">
-            <div class="card-header">
-              <h3>O cofre detectou presença</h3>
-              <span class="log-id">ID #173891</span>
-              <span class="status status-aviso">Status: Aviso</span>
-            </div>
-            <div class="card-body">
-              <p><strong>Horário:</strong> 11:12 - 24/11/2025</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
-            </div>
-          </article>
-        </div>
       </section>
     </main>
 
