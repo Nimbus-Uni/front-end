@@ -182,3 +182,31 @@ barraPesquisa.addEventListener("input", (e) => {
 
   gerarFAQ(duvidasPesquisa, duvidasArea);
 });
+
+let isShowing = false;
+const menu = document.querySelector(".menu-responsive");
+const closeArea = document.getElementById("close-area");
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 1024) {
+    menu.style.display = "none";
+    closeArea.style.display = "none";
+    isShowing = false;
+  }
+});
+
+function showMenu() {
+  if (!isShowing) {
+    menu.style.display = "flex";
+    closeArea.style.display = "block";
+    isShowing = true;
+    return;
+  }
+
+  if (isShowing) {
+    menu.style.display = "none";
+    closeArea.style.display = "none";
+    isShowing = false;
+    return;
+  }
+}

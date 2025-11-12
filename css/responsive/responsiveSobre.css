@@ -1,0 +1,176 @@
+@media (max-width: 1350px) {
+  .about-text {
+    max-width: 600px;
+    text-align: justify;
+    margin-top: 30px;
+  }
+
+  .about-text h1 {
+    font-size: 25px;
+  }
+
+  .about-text h2 {
+    color: var(--primary-color);
+    font-size: 17px;
+  }
+
+  .about-text p {
+    font-size: 15px;
+  }
+
+  .about-container img {
+    width: 400px;
+  }
+
+  .topics-titulo h1 {
+    font-size: 25px;
+  }
+
+  .topics-titulo h2 {
+    font-size: 17px;
+  }
+
+  .team h1 {
+    font-size: 25px;
+  }
+
+  .team h2 {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 1030px) {
+  .list h1 {
+    font-size: 30px;
+  }
+  .list p {
+    font-size: 18px;
+  }
+
+  .about-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .about-text {
+    max-width: 800px;
+    margin-top: 5px;
+  }
+
+  .about-text h1 {
+    text-align: center;
+  }
+
+  .about-text h2 {
+    text-align: center;
+  }
+
+  .about-image img {
+    display: none;
+  }
+
+  #topics-section {
+    margin-top: 20px;
+  }
+
+  .topics {
+    padding: 15px;
+  }
+
+  .topics-container {
+    gap: 15px;
+  }
+
+  .topics h3 {
+    font-size: 16px;
+  }
+
+  .topics p {
+    font-size: 14px;
+  }
+
+  .navbar .menu {
+    display: none;
+  }
+
+  .navbar {
+    justify-content: center;
+  }
+
+  .menu-button {
+    display: block;
+  }
+}
+
+@media (max-width: 760px) {
+  .list-container {
+    padding: 0px;
+  }
+
+  .list h1 {
+    font-size: 25px;
+  }
+  .list p {
+    font-size: 17px;
+  }
+
+  .about-text p {
+    font-size: 12px;
+    margin-top: -10px;
+  }
+
+  .about-text h1 {
+    font-size: 20px;
+  }
+
+  .about-text h2 {
+    font-size: 15px;
+  }
+
+  .topics-titulo h1 {
+    font-size: 20px;
+  }
+
+  .topics-titulo h2 {
+    font-size: 15px;
+  }
+
+  .topics-container {
+    flex-direction: column;
+    margin-top: 20px;
+  }
+
+  .topics {
+    width: 100%;
+  }
+
+  .team {
+    margin-top: 13px;
+  }
+
+  .team h1 {
+    font-size: 20px;
+  }
+
+  .team h2 {
+    font-size: 15px;
+  }
+
+  .scroll_item {
+    width: 160px;
+    height: 240px;
+  }
+
+  .scroll_item img {
+    height: 130px;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-responsive {
+    right: 17%;
+  }
+}

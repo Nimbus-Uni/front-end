@@ -5,6 +5,13 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  height: auto;
+  min-height: 100%;
+  position: relative;
+}
+
 body {
   background-color: #101e27;
   color: #fff;
@@ -134,21 +141,21 @@ body {
   width: 200px;
 }
 
-.navbar ul {
+.navbar .menu {
   display: flex;
   list-style: none;
   gap: 30px;
 }
 
-.navbar ul li a {
+.navbar li a {
   text-decoration: none;
   color: var(--text-color);
   font-size: 0.95rem;
   transition: 0.3s;
 }
 
-.navbar ul li a:hover,
-.navbar ul li a:focus {
+.navbar .menu ul li a:hover,
+.navbar .menu ul li a:focus {
   color: var(--primary-color);
 }
 
@@ -423,188 +430,59 @@ body {
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-@media (max-width: 1650px) {
-  #test {
-    width: 1500px;
-    max-width: 100%;
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-  }
-
-  .content {
-    flex-direction: column;
-  }
-
-  .text {
-    width: 80%;
-  }
-
-  .subtitle {
-    text-align: center;
-  }
-
-  .title {
-    text-align: center;
-  }
-
-  .carousel-main {
-    display: none;
-  }
-
-  #products {
-    display: flex;
-    width: 100%;
-    align-content: center;
-    justify-content: center;
-    gap: 20px;
-  }
-
-  .product-card {
-    width: 35%;
-    height: 350px;
-    background-color: #11253d;
-    border-radius: 20px;
-  }
-
-  .product-card .info {
-    height: 130px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .product-card h3 {
-    font-size: 20px;
-  }
-
-  .product-card p {
-    text-align: center;
-  }
-
-  .product-card img {
-    width: 100%;
-    height: 200px;
-    flex-shrink: 0;
-    object-fit: cover;
-    border-radius: 20px 20px 0 0;
-  }
-
-  .services-container {
-    width: 72%;
-  }
-
-  .services-container h1 {
-    margin-top: 60px;
-  }
-
-  .services-container p {
-    margin-bottom: 20px;
-  }
+.menu-responsive {
+  width: 100px;
+  height: 160px;
+  background-color: var(--card-bg);
+  position: fixed;
+  right: 11%;
+  top: 5.5%;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  z-index: 5;
 }
 
-@media (max-width: 1000px) {
-  .content {
-    padding: 60px 0;
-  }
-
-  .text {
-    width: 85%;
-  }
-
-  .product-card {
-    width: 41%;
-    height: 275px;
-  }
-
-  .product-card img {
-    height: 130px;
-  }
-
-  .title {
-    font-size: 30px;
-  }
-
-  .services-header h1 {
-    font-size: 30px;
-  }
-
-  .services-container {
-    width: 84%;
-  }
+.menu-responsive li {
+  text-align: center;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@media (max-width: 760px) {
-  .content {
-    padding-bottom: 40px;
-  }
-
-  #products {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .product-card {
-    width: 85%;
-    height: 250px;
-  }
-
-  .product-card .info {
-    height: 105px;
-  }
-
-  .title {
-    font-size: 25px;
-  }
-
-  .services-header h1 {
-    font-size: 25px;
-  }
-
-  .services-header p {
-    font-size: 13px;
-  }
-
-  .subtitle {
-    font-size: 15px;
-  }
-
-  .desc {
-    font-size: 13px;
-  }
-
-  #custom-text p {
-    font-size: 13px;
-  }
-
-  .service-card h3 {
-    font-size: 17px;
-  }
-
-  .service-card p {
-    font-size: 14px;
-  }
-
-  .info h3 {
-    font-size: 18px;
-  }
-
-  .info p {
-    font-size: 13px;
-  }
+.menu-responsive li:nth-child(4) {
+  background-color: #1784e8;
 }
 
-@media (max-width: 520px) {
-  .product-card {
-    height: 255px;
-  }
+.menu-responsive li:nth-child(1) {
+  border-radius: 10px 10px 0 0;
+}
 
-  .info h3 {
-    font-size: 15px;
-  }
+.menu-responsive li:nth-child(5) {
+  border-radius: 0 0 10px 10px;
+}
 
-  .info p {
-    font-size: 12px;
-  }
+.menu-responsive li:hover {
+  background-color: #1784e8;
+}
+
+.menu-button {
+  position: fixed;
+  right: 5%;
+  top: 5.5%;
+  z-index: 5;
+  display: none;
+}
+
+#close-area {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  display: none;
+  z-index: 3;
 }

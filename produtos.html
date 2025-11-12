@@ -13,14 +13,17 @@
     <link rel="stylesheet" href="assets/logo.png" />
     <link rel="stylesheet" href="css/variables.css" />
     <link rel="stylesheet" href="css/main/produtos.css" />
-    <link rel="stylesheet" href="css/responsive/responsiveHome.css" />
-    <link rel="stylesheet" href="css/animations/animations.css" />
+    <link rel="stylesheet" href="css/responsive/responsiveProdutos.css" />
   </head>
   <body>
+    <main id="close-area" onclick="showMenu()"></main>
+
     <header class="header">
       <nav class="navbar container">
         <div class="logo">
-          <img src="assets/logo.png" alt="Nimbus logo" />
+          <a href="index.html">
+            <img src="assets/logo.png" alt="Nimbus Logo" />
+          </a>
         </div>
         <ul class="menu">
           <li>
@@ -129,6 +132,38 @@
             </a>
           </li>
         </ul>
+        <ul class="menu-responsive">
+          <li>
+            <a href="index.html" style="color: white"> Início </a>
+          </li>
+          <li>
+            <a href="sobre.html"> Sobre </a>
+          </li>
+          <li>
+            <a href="ajuda.html"> Ajuda </a>
+          </li>
+          <li>
+            <a href="services.html"> Serviços </a>
+          </li>
+          <li>
+            <a href="produtos.html"> Produtos </a>
+          </li>
+        </ul>
+
+        <a class="menu-button"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            onclick="showMenu()"
+          >
+            <path
+              fill="#fffcfc"
+              d="M4 18q-.425 0-.712-.288T3 17t.288-.712T4 16h16q.425 0 .713.288T21 17t-.288.713T20 18zm0-5q-.425 0-.712-.288T3 12t.288-.712T4 11h16q.425 0 .713.288T21 12t-.288.713T20 13zm0-5q-.425 0-.712-.288T3 7t.288-.712T4 6h16q.425 0 .713.288T21 7t-.288.713T20 8z"
+            />
+          </svg>
+        </a>
       </nav>
     </header>
 
@@ -140,10 +175,18 @@
 
       <section class="log-filters">
         <div class="filter-tabs">
-          <button class="btn btn-tab active" onclick="() => showLogs('all')">Todos os Logs</button>
-          <button class="btn btn-tab" onclick="() => showLogs('close')">Logs de Abertura</button>
-          <button class="btn btn-tab" onclick="() => showLogs('movement')">Logs de Aviso</button>
-          <button class="btn btn-tab" onclick="() => showLogs('open')">Logs de Emergência</button>
+          <button class="btn btn-tab active" onclick="() => showLogs('all')">
+            Todos os Logs
+          </button>
+          <button class="btn btn-tab" onclick="() => showLogs('close')">
+            Logs de Abertura
+          </button>
+          <button class="btn btn-tab" onclick="() => showLogs('movement')">
+            Logs de Aviso
+          </button>
+          <button class="btn btn-tab" onclick="() => showLogs('open')">
+            Logs de Emergência
+          </button>
         </div>
         <div class="filter-actions">
           <a href="#">Mais Antigos →</a>
@@ -151,8 +194,7 @@
         </div>
       </section>
 
-      <section class="log-feed">
-      </section>
+      <section class="log-feed"></section>
     </main>
 
     <footer class="footer">

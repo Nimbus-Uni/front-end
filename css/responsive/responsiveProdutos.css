@@ -1,0 +1,19 @@
+@media (max-width: 1024px) {
+  .navbar .menu {
+    display: none;
+  }
+
+  .navbar {
+    justify-content: center;
+  }
+
+  .menu-button {
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-responsive {
+    right: 17%;
+  }
+}

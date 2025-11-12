@@ -1,184 +1,207 @@
- 
 @media (min-width: 1400px) {
-    .hero {
-        justify-content: space-around; /* não deixa o cadeado colar na borda */
-        padding: 0 120px;
-    }
+  .hero {
+    justify-content: space-around; /* não deixa o cadeado colar na borda */
+    padding: 0 120px;
+  }
 
-    .hero-image img {
-        width: 25vw;
-        max-width: 450px;
-    }
-    }
-
-    /* Telas médias (tablets e notebooks menores) */
-    @media (max-width: 1024px) {
-    .hero {
-        flex-direction: column; /* texto em cima, imagem embaixo */
-        text-align: center;
-        gap: 50px;
-        padding: 40px 20px;
-    }
-
-    .hero-content {
-        max-width: 90%;
-    }
-
-    .hero-content h1 {
-        font-size: 1.8rem;
-    }
-
-    .hero-image img {
-        width: 280px;
-        margin-top: -30px;
-    }
-
-    .cards {
-        flex-direction: column;
-        gap: 15px;
-        
-    }
-    .page-title h1 {
-        font-size: 2.2rem; /* Reduz um pouco o título principal */
-    }
-
-    /* Empilha os filtros e o link "Mais Antigos" */
-    .log-filters {
-        flex-direction: column;
-        align-items: flex-start; /* Alinha os itens à esquerda */
-        gap: 1.5rem; /* Espaço entre os filtros e o link */
-    }
-
-    }
-
-
-    /* Telas pequenas (celulares até 768px) */
-    @media (max-width: 768px) {
-    .navbar ul {
-        display: none; /* esconde menu desktop */
-    }
-
-    .navbar {
-        justify-content: center;
-    }
-
-    .logo img {
-        width: 140px;
-    }
-
-    .hero-content h1 {
-        font-size: 1.5rem;
-        line-height: 1.3;
-    }
-
-    .hero-content p {
-        font-size: 0.9rem;
-    }
-
-    .btn-primary {
-        display: block;
-        width: 100%;
-        margin: 10px 0;
-    }
-
-    .btn-ghost {
-        display: block;
-        width: 100%;
-        margin-top: 5px;
-        text-align: center;
-    }
-
-    .hero-image img {
-        width: 220px;
-        margin-top: 0;
-    }
-       .page-title h1 {
-        font-size: 1.8rem; /* Reduz ainda mais o título */
-        line-height: 1.3;
-    }
-
-    .page-title .lead {
-        font-size: 1rem;
-    }
-
-    /* Permite que os botões de filtro quebrem a linha se não couberem */
-    .filter-tabs {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem; /* Adiciona um espaço vertical entre os botões que quebram a linha */
-    }
-
-    /* Ajusta o tamanho mínimo dos cards para telas menores */
-    .log-group {
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    }
-
-    .log-card {
-        padding: 1.2rem; /* Reduz o espaçamento interno do card */
-    }
-
-    /* Reduz as fontes dentro do card */
-    .card-header h3 {
-        font-size: 1rem;
-    }
-    .status, .log-id {
-        font-size: 0.75rem;
-    }
-    .card-body p {
-        font-size: 0.85rem;
-    }
-}    
-    
-
-    /* Celulares muito pequenos (até 480px) */
-    @media (max-width: 480px) {
-    .logo img {
-        width: 120px;
-    }
-
-    .hero-content h1 {
-        font-size: 1.2rem;
-    }
-
-    .cards {
-        gap: 10px;
-    }
-
-    .card {
-        padding: 12px;
-    }
-
-    .card p {
-        font-size: 0.8rem;
-    }
-
-    .footer {
-        font-size: 0.75rem;
-    }
-     .page-title {
-        margin: 2.5rem 0; /* Menos espaçamento vertical */
-    }
-    
-    .page-title h1 {
-        font-size: 1.5rem;
-    }
-
-    /* Garante que o grid funcione bem mesmo em telas muito estreitas */
-    .log-group {
-        grid-template-columns: 1fr; /* Força uma única coluna */
-        gap: 1rem;
-    }
-
-    .log-card {
-        padding: 1rem;
-    }
-
-    /* Garante que o cabeçalho do card se ajuste bem */
-    .card-header {
-        /* O título ocupará a primeira linha e os outros itens irão para baixo */
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-    }
+  .hero-image img {
+    width: 25vw;
+    max-width: 450px;
+  }
 }
 
+@media (max-width: 1300px) {
+  .hero-image {
+    display: none;
+  }
+
+  .hero-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* Telas médias (tablets e notebooks menores) */
+@media (max-width: 1024px) {
+  .hero {
+    flex-direction: column; /* texto em cima, imagem embaixo */
+    text-align: center;
+    gap: 50px;
+    padding: 40px 20px;
+  }
+
+  .hero-content {
+    max-width: 90%;
+  }
+
+  .hero-content h1 {
+    font-size: 40px;
+  }
+
+  .hero-content .lead {
+    font-size: 17px;
+  }
+
+  .hero-image img {
+    width: 280px;
+    margin-top: -30px;
+  }
+
+  .page-title h1 {
+    font-size: 2.2rem; /* Reduz um pouco o título principal */
+  }
+
+  /* Empilha os filtros e o link "Mais Antigos" */
+  .log-filters {
+    flex-direction: column;
+    align-items: flex-start; /* Alinha os itens à esquerda */
+    gap: 1.5rem; /* Espaço entre os filtros e o link */
+  }
+
+  .navbar .menu {
+    display: none;
+  }
+
+  .navbar {
+    justify-content: center;
+  }
+
+  .menu-button {
+    display: block;
+  }
+}
+
+/* Telas pequenas (celulares até 768px) */
+@media (max-width: 790px) {
+  .logo img {
+    width: 140px;
+  }
+
+  .cards {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .hero-content h1 {
+    font-size: 30px;
+  }
+
+  .hero-content .lead {
+    font-size: 15px;
+  }
+
+  .hero-image img {
+    width: 220px;
+    margin-top: 0;
+  }
+  .page-title h1 {
+    font-size: 1.8rem; /* Reduz ainda mais o título */
+    line-height: 1.3;
+  }
+
+  .page-title .lead {
+    font-size: 1rem;
+  }
+
+  /* Permite que os botões de filtro quebrem a linha se não couberem */
+  .filter-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem; /* Adiciona um espaço vertical entre os botões que quebram a linha */
+  }
+
+  /* Ajusta o tamanho mínimo dos cards para telas menores */
+  .log-group {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+
+  .log-card {
+    padding: 1.2rem; /* Reduz o espaçamento interno do card */
+  }
+
+  /* Reduz as fontes dentro do card */
+  .card-header h3 {
+    font-size: 1rem;
+  }
+  .status,
+  .log-id {
+    font-size: 0.75rem;
+  }
+  .card-body p {
+    font-size: 0.85rem;
+  }
+
+  .btn-primary {
+    font-size: 14px;
+    padding: 0 5px;
+    font-weight: bold;
+  }
+
+  .btn-ghost {
+    font-size: 14px;
+    font-weight: bold;
+  }
+}
+
+/* Celulares muito pequenos (até 480px) */
+@media (max-width: 480px) {
+  .logo img {
+    width: 120px;
+  }
+
+  .hero-content h1 {
+    font-size: 25px;
+  }
+
+  .hero-content .lead {
+    font-size: 14px;
+  }
+
+  .cards {
+    gap: 10px;
+  }
+
+  .card {
+    padding: 12px;
+  }
+
+  .card p {
+    font-size: 0.8rem;
+  }
+
+  .footer {
+    font-size: 0.75rem;
+  }
+  .page-title {
+    margin: 2.5rem 0; /* Menos espaçamento vertical */
+  }
+
+  .page-title h1 {
+    font-size: 1.5rem;
+  }
+
+  /* Garante que o grid funcione bem mesmo em telas muito estreitas */
+  .log-group {
+    grid-template-columns: 1fr; /* Força uma única coluna */
+    gap: 1rem;
+  }
+
+  .log-card {
+    padding: 1rem;
+  }
+
+  /* Garante que o cabeçalho do card se ajuste bem */
+  .card-header {
+    /* O título ocupará a primeira linha e os outros itens irão para baixo */
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .menu-responsive {
+    right: 17%;
+  }
+}

@@ -1,0 +1,268 @@
+@media (max-width: 1200px) {
+  #bloco {
+    margin: 40px 50px 20px 50px;
+    flex-direction: column-reverse;
+    gap: 40px;
+  }
+
+  #bloco-duvida {
+    width: 800px;
+    text-align: center;
+  }
+
+  #bloco-duvida #titulo {
+    text-align: center;
+  }
+
+  #bloco-duvida #paragrafo-3 {
+    margin: 10px 0px;
+    font-size: 13px;
+  }
+
+  #formulario {
+    width: 650px;
+  }
+
+  #email-input {
+    width: 610px;
+  }
+
+  #assunto-input {
+    width: 610px;
+  }
+
+  #paragrafo-input {
+    width: 610px;
+  }
+
+  #enviar {
+    width: 610px;
+  }
+}
+
+@media (max-width: 1000px) {
+  #titulo-principal {
+    font-size: 30px;
+  }
+
+  #barra-pesquisa div {
+    width: 550px;
+  }
+
+  #duvida {
+    margin-top: 20px;
+  }
+
+  #duvida main {
+    width: 650px;
+  }
+
+  #duvida h3 {
+    font-size: 15px;
+    padding: 15px 0px;
+  }
+
+  #duvida p {
+    font-size: 13px;
+  }
+
+  #duvida main div svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  #bloco-duvida {
+    width: 670px;
+    text-align: center;
+  }
+
+  .navbar .menu {
+    display: none;
+  }
+
+  .navbar {
+    justify-content: center;
+  }
+
+  .menu-button {
+    display: block;
+  }
+}
+
+@media (max-width: 760px) {
+  #titulo-principal {
+    font-size: 25px;
+  }
+
+  #barra-pesquisa div {
+    width: 450px;
+  }
+
+  #duvida main {
+    width: 550px;
+  }
+
+  #duvida h3 {
+    font-size: 15px;
+    padding: 10px 0px;
+  }
+
+  #duvida p {
+    font-size: 11px;
+  }
+
+  #duvida main div svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  #bloco-duvida {
+    width: 545px;
+    text-align: center;
+  }
+
+  #bloco-duvida #titulo {
+    font-size: 20px;
+  }
+
+  #bloco-duvida #sub-titulo {
+    font-size: 15px;
+  }
+
+  #formulario {
+    width: 550px;
+  }
+
+  #email-input {
+    width: 510px;
+  }
+
+  #assunto-input {
+    width: 510px;
+  }
+
+  #paragrafo-input {
+    width: 510px;
+  }
+
+  #enviar {
+    width: 510px;
+  }
+}
+
+@media (max-width: 600px) {
+  #duvida {
+    margin-top: 17px;
+  }
+
+  #barra-pesquisa div {
+    width: 400px;
+  }
+
+  #duvida main {
+    width: 500px;
+  }
+
+  #duvida h3 {
+    font-size: 15px;
+    padding: 10px 30px 10px 0px;
+  }
+
+  #duvida p {
+    font-size: 11px;
+  }
+
+  #duvida main div svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  #bloco {
+    margin: 30px 20px 0px 20px;
+    gap: 25px;
+  }
+
+  #bloco-duvida {
+    width: 100%;
+    max-width: 475px;
+    text-align: center;
+  }
+
+  #bloco-duvida #titulo {
+    font-size: 25px;
+    margin-top: 4px;
+  }
+
+  #bloco-duvida #paragrafo-1 {
+    margin: 7px 0px;
+    font-size: 12px;
+  }
+
+  #bloco-duvida #paragrafo-2 {
+    margin: 7px 0px;
+    font-size: 12px;
+  }
+
+  #bloco-duvida #paragrafo-3 {
+    margin: 7px 0px;
+    font-size: 12px;
+  }
+
+  #formulario {
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 20px;
+  }
+
+  #email {
+    padding-top: 20px;
+  }
+
+  #email-input {
+    width: 100%;
+    max-width: 460px;
+    height: 30px;
+    border-radius: 8px;
+  }
+
+  #assunto {
+    padding-top: 20px;
+  }
+
+  #assunto-input {
+    width: 100%;
+    max-width: 460px;
+    height: 30px;
+    border-radius: 8px;
+  }
+
+  #paragrafo {
+    padding-top: 20px;
+  }
+
+  #paragrafo-input {
+    width: 100%;
+    max-width: 460px;
+    border-radius: 8px;
+  }
+
+  #enviar {
+    width: 100%;
+    max-width: 460px;
+    height: 30px;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-responsive {
+    right: 17%;
+  }
+}
+
+@media (max-width: 400px) {
+  #bloco-duvida #titulo {
+    font-size: 25px;
+    margin-top: 4px;
+  }
+}
