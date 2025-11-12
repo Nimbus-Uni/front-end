@@ -378,7 +378,6 @@ main.container {
 
 .menu-responsive {
   width: 100px;
-  height: 160px;
   background-color: var(--card-bg);
   position: fixed;
   right: 11%;

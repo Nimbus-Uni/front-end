@@ -197,6 +197,7 @@ body {
   min-height: 90vh;
   padding: 0px 60px 0 60px;
   gap: 40px;
+  margin-top: 50px;
 }
 
 .hero-content {
@@ -266,6 +267,7 @@ body {
 .cards {
   display: flex;
   gap: 20px;
+  margin-bottom: 40px;
 }
 
 .card {
@@ -320,7 +322,6 @@ body {
 
 .menu-responsive {
   width: 100px;
-  height: 160px;
   background-color: var(--card-bg);
   position: fixed;
   right: 11%;
