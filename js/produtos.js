@@ -56,10 +56,60 @@ revealOnScroll();
 const firebaseUrl = "https://esp32-a5949-default-rtdb.firebaseio.com";
 
 // setInterval(() => {
-//   pegarFotos();
+//   getPhotos();
 // }, 1000);
 
-async function pegarFotos() {
+let today = [];
+let yesterday = [];
+let lastWeek = [];
+let lastMonth = [];
+
+let date = new Date();
+let yesterdayDate = new Date(date);
+let lastWeekDate = new Date(date);
+
+yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+lastWeekDate.setDate(lastWeekDate.getDate() - 7);
+
+date.setHours(0, 0, 0, 0);
+yesterdayDate.setHours(0, 0, 0, 0);
+lastWeekDate.setHours(0, 0, 0, 0);
+
+const statusVariables = {
+  open: [
+    "O Cofre foi destrancado",
+    "status-emergencia",
+    "Status: Emergência",
+    "Visualizar Fotos",
+  ],
+  close: ["O Cofre foi trancado", "status-ok", "Status: OK"],
+  movement: [
+    "O Cofre detectou presença",
+    "status-aviso",
+    "Status: Aviso",
+    "Visualizar Foto",
+  ],
+};
+
+let logs = [];
+let invertedLogs = [];
+
+const container = document.querySelector(".log-feed");
+
+const buttonAll = document.querySelector(".btn-all");
+const buttonOK = document.querySelector(".btn-close");
+const buttonWarning = document.querySelector(".btn-warning");
+const buttonEmergence = document.querySelector(".btn-emergence");
+
+const buttonDesc = document.querySelector(".btn-desc");
+const buttonAsc = document.querySelector(".btn-asc");
+
+let html = "";
+
+let globalStatus = "all";
+let globalOrder = "desc";
+
+async function getPhotos() {
   try {
     const response = await fetch(`${firebaseUrl}/logs.json`);
     const data = await response.json();
@@ -69,38 +119,39 @@ async function pegarFotos() {
       return;
     }
 
-    const logs = Object.keys(data).map((key) => ({
+    logs = Object.keys(data).map((key) => ({
       id: key,
       ...data[key],
     }));
 
-    const container = document.querySelector(".log-feed");
+    invertedLogs = logs.toReversed();
 
-    let html = "";
+    showLogs("all", invertedLogs);
+  } catch (err) {
+    console.log("Erro:", err);
+  }
+}
 
-    logs.reverse();
+let filteredLogs = [];
+let inversedFiltered = [];
 
-    let openLogs = [];
-    let closeLogs = [];
-    let movementLogs = [];
+function showLogs(status, allLogs = logs) {
+  globalStatus = status;
+  today = [];
+  yesterday = [];
+  lastWeek = [];
+  lastMonth = [];
 
-    let today = [];
-    let yesterday = [];
-    let lastWeek = [];
-    let lastMonth = [];
+  if (globalOrder === "desc") {
+    allLogs = invertedLogs;
+  }
 
-    let date = new Date();
-    let yesterdayDate = new Date(date);
-    let lastWeekDate = new Date(date);
+  if (globalOrder === "asc") {
+    allLogs = logs;
+  }
 
-    yesterdayDate.setDate(yesterdayDate.getDate() - 1);
-    lastWeekDate.setDate(lastWeekDate.getDate() - 7);
-
-    date.setHours(0, 0, 0, 0);
-    yesterdayDate.setHours(0, 0, 0, 0);
-    lastWeekDate.setHours(0, 0, 0, 0);
-
-    logs.forEach((log) => {
+  if (status === "all") {
+    allLogs.forEach((log) => {
       let logData = new Date(log.dataHora);
       logData.setHours(0, 0, 0, 0);
 
@@ -116,80 +167,76 @@ async function pegarFotos() {
       } else if (logData.getTime() < lastWeekDate.getTime()) {
         lastMonth.push(log);
       }
+    });
+  }
 
-      if (log.status === "open") {
-        openLogs.push(log);
-      }
+  if (status !== "all") {
+    filteredLogs = [];
 
-      if (log.status === "close") {
-        closeLogs.push(log);
-      }
-
-      if (log.status === "movement") {
-        movementLogs.push(log);
+    allLogs.forEach((log) => {
+      if (log.status === status) {
+        filteredLogs.push(log);
       }
     });
 
+    inversedFiltered = filteredLogs.toReversed();
+
+    filteredLogs.forEach((filteredLog) => {
+      let filteredLogDate = new Date(filteredLog.dataHora);
+      filteredLogDate.setHours(0, 0, 0, 0);
+
+      if (filteredLogDate.getTime() === date.getTime()) {
+        today.push(filteredLog);
+      } else if (filteredLogDate.getTime() === yesterdayDate.getTime()) {
+        yesterday.push(filteredLog);
+      } else if (
+        filteredLogDate.getTime() < yesterdayDate.getTime() &&
+        filteredLogDate.getTime() >= lastWeekDate.getTime()
+      ) {
+        lastWeek.push(filteredLog);
+      } else if (filteredLogDate.getTime() < lastWeekDate.getTime()) {
+        lastMonth.push(filteredLog);
+      }
+    });
+  }
+
+  changeButton(status);
+
+  printLogs();
+}
+
+function printLogs() {
+  html = "";
+
+  if (globalOrder === "desc") {
     if (today.length > 0) {
       html += `<h2 class="title-date">Hoje</h2>`;
       html += `<div class="log-group">`;
+
       today.forEach((log) => {
         let logDate = new Date(log.dataHora);
 
-        if (log.status == "close") {
-          html += `
-            <article class="log-card">
+        html += `
+        <article class="log-card">
             <div class="card-header">
-              <h3>Cofre foi trancado</h3>
+              <h3>${statusVariables[log.status][0]}</h3>
               <span class="log-id">ID #${log.timestamp}</span>
-              <span class="status status-ok">Status: OK</span>
+              <span class="status ${statusVariables[log.status][1]}">${
+          statusVariables[log.status][2]
+        }</span>
             </div>
             <div class="card-body">
               <p><strong>Data:</strong> ${logDate.toLocaleString("pt-BR")}</p>
               <p><strong>Localização:</strong> Itapevi, São Paulo</p>
             </div>
-          </article>`;
-        }
-
-        if (log.status == "movement") {
-          html += `
-            <article class="log-card">
-            <div class="card-header">
-              <h3>O cofre detectou presença</h3>
-              <span class="log-id">ID #${log.timestamp}</span>
-              <span class="status status-aviso">Status: Aviso</span>
-            </div>
-            <div class="card-body">
-              <p><strong>Horário:</strong> ${logDate.toLocaleString(
-                "pt-BR"
-              )}</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-ghost">Visualizar Fotos</a>
-            </div>
-            </article>`;
-        }
-
-        if (log.status == "open") {
-          html += `
-            <article class="log-card">
-            <div class="card-header">
-              <h3>O Cofre foi destrancado</h3>
-              <span class="log-id">ID #${log.timestamp}</span>
-              <span class="status status-emergencia">Status: Emergência</span>
-            </div>
-            <div class="card-body">
-              <p><strong>Horário:</strong> ${logDate.toLocaleString(
-                "pt-BR"
-              )}</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-ghost">Visualizar Fotos</a>
-            </div>
-            </article>`;
-        }
+            ${
+              log.status === "movement" || log.status === "open"
+                ? `<div class="card-footer"> <a href="#" class="btn btn-ghost">${
+                    statusVariables[log.status][3]
+                  }</a> </div>`
+                : ""
+            }
+        </article>`;
       });
 
       html += `</div>`;
@@ -202,60 +249,27 @@ async function pegarFotos() {
       yesterday.forEach((log) => {
         let logDate = new Date(log.dataHora);
 
-        if (log.status == "close") {
-          html += `
-            <article class="log-card">
+        html += `
+        <article class="log-card">
             <div class="card-header">
-              <h3>Cofre foi trancado</h3>
+              <h3>${statusVariables[log.status][0]}</h3>
               <span class="log-id">ID #${log.timestamp}</span>
-              <span class="status status-ok">Status: OK</span>
+              <span class="status ${statusVariables[log.status][1]}">${
+          statusVariables[log.status][2]
+        }</span>
             </div>
             <div class="card-body">
               <p><strong>Data:</strong> ${logDate.toLocaleString("pt-BR")}</p>
               <p><strong>Localização:</strong> Itapevi, São Paulo</p>
             </div>
-          </article>`;
-        }
-
-        if (log.status == "movement") {
-          html += `
-        <article class="log-card">
-            <div class="card-header">
-              <h3>O cofre detectou presença</h3>
-              <span class="log-id">ID #${log.timestamp}</span>
-              <span class="status status-aviso">Status: Aviso</span>
-            </div>
-            <div class="card-body">
-              <p><strong>Horário:</strong> ${logDate.toLocaleString(
-                "pt-BR"
-              )}</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-ghost">Visualizar Foto</a>
-            </div>
+            ${
+              log.status === "movement" || log.status === "open"
+                ? `<div class="card-footer"> <a href="#" class="btn btn-ghost">${
+                    statusVariables[log.status][3]
+                  }</a> </div>`
+                : ""
+            }
         </article>`;
-        }
-
-        if (log.status == "open") {
-          html += `
-        <article class="log-card">
-            <div class="card-header">
-              <h3>O Cofre foi destrancado</h3>
-              <span class="log-id">ID #${log.timestamp}</span>
-              <span class="status status-emergencia">Status: Emergência</span>
-            </div>
-            <div class="card-body">
-              <p><strong>Horário:</strong> ${logDate.toLocaleString(
-                "pt-BR"
-              )}</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-ghost">Visualizar Fotos</a>
-            </div>
-        </article>`;
-        }
       });
 
       html += `</div>`;
@@ -268,60 +282,27 @@ async function pegarFotos() {
       lastWeek.forEach((log) => {
         let logDate = new Date(log.dataHora);
 
-        if (log.status == "close") {
-          html += `
-            <article class="log-card">
+        html += `
+        <article class="log-card">
             <div class="card-header">
-              <h3>Cofre foi trancado</h3>
+              <h3>${statusVariables[log.status][0]}</h3>
               <span class="log-id">ID #${log.timestamp}</span>
-              <span class="status status-ok">Status: OK</span>
+              <span class="status ${statusVariables[log.status][1]}">${
+          statusVariables[log.status][2]
+        }</span>
             </div>
             <div class="card-body">
               <p><strong>Data:</strong> ${logDate.toLocaleString("pt-BR")}</p>
               <p><strong>Localização:</strong> Itapevi, São Paulo</p>
             </div>
-          </article>`;
-        }
-
-        if (log.status == "movement") {
-          html += `
-        <article class="log-card">
-            <div class="card-header">
-              <h3>O cofre detectou presença</h3>
-              <span class="log-id">ID #${log.timestamp}</span>
-              <span class="status status-aviso">Status: Aviso</span>
-            </div>
-            <div class="card-body">
-              <p><strong>Horário:</strong> ${logDate.toLocaleString(
-                "pt-BR"
-              )}</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-ghost">Visualizar Foto</a>
-            </div>
+            ${
+              log.status === "movement" || log.status === "open"
+                ? `<div class="card-footer"> <a href="#" class="btn btn-ghost">${
+                    statusVariables[log.status][3]
+                  }</a> </div>`
+                : ""
+            }
         </article>`;
-        }
-
-        if (log.status == "open") {
-          html += `
-        <article class="log-card">
-            <div class="card-header">
-              <h3>O Cofre foi destrancado</h3>
-              <span class="log-id">ID #${log.timestamp}</span>
-              <span class="status status-emergencia">Status: Emergência</span>
-            </div>
-            <div class="card-body">
-              <p><strong>Horário:</strong> ${logDate.toLocaleString(
-                "pt-BR"
-              )}</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-ghost">Visualizar Fotos</a>
-            </div>
-        </article>`;
-        }
       });
 
       html += `</div>`;
@@ -334,337 +315,230 @@ async function pegarFotos() {
       lastMonth.forEach((log) => {
         let logDate = new Date(log.dataHora);
 
-        if (log.status == "close") {
-          html += `
-            <article class="log-card">
+        html += `
+        <article class="log-card">
             <div class="card-header">
-              <h3>Cofre foi trancado</h3>
+              <h3>${statusVariables[log.status][0]}</h3>
               <span class="log-id">ID #${log.timestamp}</span>
-              <span class="status status-ok">Status: OK</span>
+              <span class="status ${statusVariables[log.status][1]}">${
+          statusVariables[log.status][2]
+        }</span>
             </div>
             <div class="card-body">
               <p><strong>Data:</strong> ${logDate.toLocaleString("pt-BR")}</p>
               <p><strong>Localização:</strong> Itapevi, São Paulo</p>
             </div>
-          </article>`;
-        }
+            ${
+              log.status === "movement" || log.status === "open"
+                ? `<div class="card-footer"> <a href="#" class="btn btn-ghost">${
+                    statusVariables[log.status][3]
+                  }</a> </div>`
+                : ""
+            }
+        </article>`;
+      });
 
-        if (log.status == "movement") {
-          html += `
+      html += `</div>`;
+    }
+  }
+
+  if (globalOrder === "asc") {
+    if (lastMonth.length > 0) {
+      html += `<h2 class="title-date">Mais de uma semana</h2>`;
+      html += `<div class="log-group">`;
+
+      lastMonth.forEach((log) => {
+        let logDate = new Date(log.dataHora);
+
+        html += `
         <article class="log-card">
             <div class="card-header">
-              <h3>O cofre detectou presença</h3>
+              <h3>${statusVariables[log.status][0]}</h3>
               <span class="log-id">ID #${log.timestamp}</span>
-              <span class="status status-aviso">Status: Aviso</span>
+              <span class="status ${statusVariables[log.status][1]}">${
+          statusVariables[log.status][2]
+        }</span>
             </div>
             <div class="card-body">
-              <p><strong>Horário:</strong> ${logDate.toLocaleString(
-                "pt-BR"
-              )}</p>
+              <p><strong>Data:</strong> ${logDate.toLocaleString("pt-BR")}</p>
               <p><strong>Localização:</strong> Itapevi, São Paulo</p>
             </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-ghost">Visualizar Foto</a>
-            </div>
+            ${
+              log.status === "movement" || log.status === "open"
+                ? `<div class="card-footer"> <a href="#" class="btn btn-ghost">${
+                    statusVariables[log.status][3]
+                  }</a> </div>`
+                : ""
+            }
         </article>`;
-        }
-
-        if (log.status == "open") {
-          html += `
-        <article class="log-card">
-            <div class="card-header">
-              <h3>O Cofre foi destrancado</h3>
-              <span class="log-id">ID #${log.timestamp}</span>
-              <span class="status status-emergencia">Status: Emergência</span>
-            </div>
-            <div class="card-body">
-              <p><strong>Horário:</strong> ${logDate.toLocaleString(
-                "pt-BR"
-              )}</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-ghost">Visualizar Fotos</a>
-            </div>
-        </article>`;
-        }
       });
 
       html += `</div>`;
     }
 
-    container.innerHTML = html;
-  } catch (err) {
-    console.log("Erro:", err);
+    if (lastWeek.length > 0) {
+      html += `<h2 class="title-date">Semana Passada</h2>`;
+      html += `<div class="log-group">`;
+
+      lastWeek.forEach((log) => {
+        let logDate = new Date(log.dataHora);
+
+        html += `
+        <article class="log-card">
+            <div class="card-header">
+              <h3>${statusVariables[log.status][0]}</h3>
+              <span class="log-id">ID #${log.timestamp}</span>
+              <span class="status ${statusVariables[log.status][1]}">${
+          statusVariables[log.status][2]
+        }</span>
+            </div>
+            <div class="card-body">
+              <p><strong>Data:</strong> ${logDate.toLocaleString("pt-BR")}</p>
+              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
+            </div>
+            ${
+              log.status === "movement" || log.status === "open"
+                ? `<div class="card-footer"> <a href="#" class="btn btn-ghost">${
+                    statusVariables[log.status][3]
+                  }</a> </div>`
+                : ""
+            }
+        </article>`;
+      });
+
+      html += `</div>`;
+    }
+
+    if (yesterday.length > 0) {
+      html += `<h2 class="title-date">Ontem</h2>`;
+      html += `<div class="log-group">`;
+
+      yesterday.forEach((log) => {
+        let logDate = new Date(log.dataHora);
+
+        html += `
+        <article class="log-card">
+            <div class="card-header">
+              <h3>${statusVariables[log.status][0]}</h3>
+              <span class="log-id">ID #${log.timestamp}</span>
+              <span class="status ${statusVariables[log.status][1]}">${
+          statusVariables[log.status][2]
+        }</span>
+            </div>
+            <div class="card-body">
+              <p><strong>Data:</strong> ${logDate.toLocaleString("pt-BR")}</p>
+              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
+            </div>
+            ${
+              log.status === "movement" || log.status === "open"
+                ? `<div class="card-footer"> <a href="#" class="btn btn-ghost">${
+                    statusVariables[log.status][3]
+                  }</a> </div>`
+                : ""
+            }
+        </article>`;
+      });
+
+      html += `</div>`;
+    }
+
+    if (today.length > 0) {
+      html += `<h2 class="title-date">Hoje</h2>`;
+      html += `<div class="log-group">`;
+
+      today.forEach((log) => {
+        let logDate = new Date(log.dataHora);
+
+        html += `
+        <article class="log-card">
+            <div class="card-header">
+              <h3>${statusVariables[log.status][0]}</h3>
+              <span class="log-id">ID #${log.timestamp}</span>
+              <span class="status ${statusVariables[log.status][1]}">${
+          statusVariables[log.status][2]
+        }</span>
+            </div>
+            <div class="card-body">
+              <p><strong>Data:</strong> ${logDate.toLocaleString("pt-BR")}</p>
+              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
+            </div>
+            ${
+              log.status === "movement" || log.status === "open"
+                ? `<div class="card-footer"> <a href="#" class="btn btn-ghost">${
+                    statusVariables[log.status][3]
+                  }</a> </div>`
+                : ""
+            }
+        </article>`;
+
+        html += `</div>`;
+      });
+
+      html += `</div>`;
+    }
+  }
+
+  container.innerHTML = html;
+}
+
+function changeOrder(order) {
+  globalOrder = order;
+
+  if (order === "desc") {
+    showLogs(globalStatus, invertedLogs);
+  }
+
+  if (order === "asc") {
+    showLogs(globalStatus, logs);
+  }
+
+  changeOrderButton(order);
+}
+
+function changeButton(status) {
+  if (status === "all") {
+    buttonAll.classList.add("active");
+    buttonOK.classList.remove("active");
+    buttonWarning.classList.remove("active");
+    buttonEmergence.classList.remove("active");
+  }
+
+  if (status === "close") {
+    buttonOK.classList.add("active");
+    buttonAll.classList.remove("active");
+    buttonWarning.classList.remove("active");
+    buttonEmergence.classList.remove("active");
+  }
+
+  if (status === "movement") {
+    buttonWarning.classList.add("active");
+    buttonAll.classList.remove("active");
+    buttonOK.classList.remove("active");
+    buttonEmergence.classList.remove("active");
+  }
+
+  if (status === "open") {
+    buttonEmergence.classList.add("active");
+    buttonWarning.classList.remove("active");
+    buttonAll.classList.remove("active");
+    buttonOK.classList.remove("active");
+
   }
 }
 
-function showLogs(status) {
-  if (today.length > 0) {
-    html += `<h2 class="title-date">Hoje</h2>`;
-    html += `<div class="log-group">`;
-    today.forEach((log) => {
-      let logDate = new Date(log.dataHora);
-
-      if (log.status == "close") {
-        html += `
-            <article class="log-card">
-            <div class="card-header">
-              <h3>Cofre foi trancado</h3>
-              <span class="log-id">ID #${log.timestamp}</span>
-              <span class="status status-ok">Status: OK</span>
-            </div>
-            <div class="card-body">
-              <p><strong>Data:</strong> ${logDate.toLocaleString("pt-BR")}</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
-            </div>
-          </article>`;
-      }
-
-      if (log.status == "movement") {
-        html += `
-            <article class="log-card">
-            <div class="card-header">
-              <h3>O cofre detectou presença</h3>
-              <span class="log-id">ID #${log.timestamp}</span>
-              <span class="status status-aviso">Status: Aviso</span>
-            </div>
-            <div class="card-body">
-              <p><strong>Horário:</strong> ${logDate.toLocaleString(
-                "pt-BR"
-              )}</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-ghost">Visualizar Fotos</a>
-            </div>
-            </article>`;
-      }
-
-      if (log.status == "open") {
-        html += `
-            <article class="log-card">
-            <div class="card-header">
-              <h3>O Cofre foi destrancado</h3>
-              <span class="log-id">ID #${log.timestamp}</span>
-              <span class="status status-emergencia">Status: Emergência</span>
-            </div>
-            <div class="card-body">
-              <p><strong>Horário:</strong> ${logDate.toLocaleString(
-                "pt-BR"
-              )}</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-ghost">Visualizar Fotos</a>
-            </div>
-            </article>`;
-      }
-    });
-
-    html += `</div>`;
+function changeOrderButton(order){
+  if (order === "desc"){
+    buttonDesc.classList.add("active");
+    buttonAsc.classList.remove("active");
   }
 
-  if (yesterday.length > 0) {
-    html += `<h2 class="title-date">Ontem</h2>`;
-    html += `<div class="log-group">`;
-
-    yesterday.forEach((log) => {
-      let logDate = new Date(log.dataHora);
-
-      if (log.status == "close") {
-        html += `
-            <article class="log-card">
-            <div class="card-header">
-              <h3>Cofre foi trancado</h3>
-              <span class="log-id">ID #${log.timestamp}</span>
-              <span class="status status-ok">Status: OK</span>
-            </div>
-            <div class="card-body">
-              <p><strong>Data:</strong> ${logDate.toLocaleString("pt-BR")}</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
-            </div>
-          </article>`;
-      }
-
-      if (log.status == "movement") {
-        html += `
-        <article class="log-card">
-            <div class="card-header">
-              <h3>O cofre detectou presença</h3>
-              <span class="log-id">ID #${log.timestamp}</span>
-              <span class="status status-aviso">Status: Aviso</span>
-            </div>
-            <div class="card-body">
-              <p><strong>Horário:</strong> ${logDate.toLocaleString(
-                "pt-BR"
-              )}</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-ghost">Visualizar Foto</a>
-            </div>
-        </article>`;
-      }
-
-      if (log.status == "open") {
-        html += `
-        <article class="log-card">
-            <div class="card-header">
-              <h3>O Cofre foi destrancado</h3>
-              <span class="log-id">ID #${log.timestamp}</span>
-              <span class="status status-emergencia">Status: Emergência</span>
-            </div>
-            <div class="card-body">
-              <p><strong>Horário:</strong> ${logDate.toLocaleString(
-                "pt-BR"
-              )}</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-ghost">Visualizar Fotos</a>
-            </div>
-        </article>`;
-      }
-    });
-
-    html += `</div>`;
-  }
-
-  if (lastWeek.length > 0) {
-    html += `<h2 class="title-date">Semana Passada</h2>`;
-    html += `<div class="log-group">`;
-
-    lastWeek.forEach((log) => {
-      let logDate = new Date(log.dataHora);
-
-      if (log.status == "close") {
-        html += `
-            <article class="log-card">
-            <div class="card-header">
-              <h3>Cofre foi trancado</h3>
-              <span class="log-id">ID #${log.timestamp}</span>
-              <span class="status status-ok">Status: OK</span>
-            </div>
-            <div class="card-body">
-              <p><strong>Data:</strong> ${logDate.toLocaleString("pt-BR")}</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
-            </div>
-          </article>`;
-      }
-
-      if (log.status == "movement") {
-        html += `
-        <article class="log-card">
-            <div class="card-header">
-              <h3>O cofre detectou presença</h3>
-              <span class="log-id">ID #${log.timestamp}</span>
-              <span class="status status-aviso">Status: Aviso</span>
-            </div>
-            <div class="card-body">
-              <p><strong>Horário:</strong> ${logDate.toLocaleString(
-                "pt-BR"
-              )}</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-ghost">Visualizar Foto</a>
-            </div>
-        </article>`;
-      }
-
-      if (log.status == "open") {
-        html += `
-        <article class="log-card">
-            <div class="card-header">
-              <h3>O Cofre foi destrancado</h3>
-              <span class="log-id">ID #${log.timestamp}</span>
-              <span class="status status-emergencia">Status: Emergência</span>
-            </div>
-            <div class="card-body">
-              <p><strong>Horário:</strong> ${logDate.toLocaleString(
-                "pt-BR"
-              )}</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-ghost">Visualizar Fotos</a>
-            </div>
-        </article>`;
-      }
-    });
-
-    html += `</div>`;
-  }
-
-  if (lastMonth.length > 0) {
-    html += `<h2 class="title-date">Mais de uma semana</h2>`;
-    html += `<div class="log-group">`;
-
-    lastMonth.forEach((log) => {
-      let logDate = new Date(log.dataHora);
-
-      if (log.status == "close") {
-        html += `
-            <article class="log-card">
-            <div class="card-header">
-              <h3>Cofre foi trancado</h3>
-              <span class="log-id">ID #${log.timestamp}</span>
-              <span class="status status-ok">Status: OK</span>
-            </div>
-            <div class="card-body">
-              <p><strong>Data:</strong> ${logDate.toLocaleString("pt-BR")}</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
-            </div>
-          </article>`;
-      }
-
-      if (log.status == "movement") {
-        html += `
-        <article class="log-card">
-            <div class="card-header">
-              <h3>O cofre detectou presença</h3>
-              <span class="log-id">ID #${log.timestamp}</span>
-              <span class="status status-aviso">Status: Aviso</span>
-            </div>
-            <div class="card-body">
-              <p><strong>Horário:</strong> ${logDate.toLocaleString(
-                "pt-BR"
-              )}</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-ghost">Visualizar Foto</a>
-            </div>
-        </article>`;
-      }
-
-      if (log.status == "open") {
-        html += `
-        <article class="log-card">
-            <div class="card-header">
-              <h3>O Cofre foi destrancado</h3>
-              <span class="log-id">ID #${log.timestamp}</span>
-              <span class="status status-emergencia">Status: Emergência</span>
-            </div>
-            <div class="card-body">
-              <p><strong>Horário:</strong> ${logDate.toLocaleString(
-                "pt-BR"
-              )}</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-ghost">Visualizar Fotos</a>
-            </div>
-        </article>`;
-      }
-    });
-
-    html += `</div>`;
+  if (order === "asc"){
+    buttonAsc.classList.add("active");
+    buttonDesc.classList.remove("active");
   }
 }
 
-pegarFotos();
+getPhotos();
 
 let isShowing = false;
 const menu = document.querySelector(".menu-responsive");

@@ -251,9 +251,16 @@ body {
   text-decoration: none;
   font-size: 0.9rem;
   transition: color 0.3s ease;
+  margin: 0 5px;
+  cursor: pointer;
 }
+
 .filter-actions a:hover {
   color: var(--accent-color);
+}
+
+.filter-actions .active {
+  color: var(--primary-color);
 }
 
 /* O estilo do h2 permanece o mesmo */

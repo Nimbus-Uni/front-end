@@ -175,22 +175,22 @@
 
       <section class="log-filters">
         <div class="filter-tabs">
-          <button class="btn btn-tab active" onclick="() => showLogs('all')">
+          <button class="btn btn-tab active btn-all" onclick="showLogs('all')">
             Todos os Logs
           </button>
-          <button class="btn btn-tab" onclick="() => showLogs('close')">
+          <button class="btn btn-tab btn-close" onclick="showLogs('close')">
+            Logs de Fechamento
+          </button>
+          <button class="btn btn-tab btn-warning" onclick="showLogs('movement')">
+            Logs de Movimento
+          </button>
+          <button class="btn btn-tab btn-emergence" onclick="showLogs('open')">
             Logs de Abertura
-          </button>
-          <button class="btn btn-tab" onclick="() => showLogs('movement')">
-            Logs de Aviso
-          </button>
-          <button class="btn btn-tab" onclick="() => showLogs('open')">
-            Logs de Emergência
           </button>
         </div>
         <div class="filter-actions">
-          <a href="#">Mais Antigos →</a>
-          <a href="#">Mais Rescentes</a>
+          <a onclick="changeOrder('desc')" class="btn-desc active">Mais Recentes</a>
+          <a onclick="changeOrder('asc')" class="btn-asc">Mais Antigos</a>
         </div>
       </section>
 
