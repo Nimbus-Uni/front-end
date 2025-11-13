@@ -16,6 +16,11 @@
     <link rel="stylesheet" href="css/responsive/responsiveProdutos.css" />
   </head>
   <body>
+    <div id="loading-screen">
+      <div class="loader"></div>
+      <p>Carregando...</p>
+    </div>
+
     <main id="close-area" onclick="showMenu()"></main>
 
     <header class="header">
@@ -181,7 +186,10 @@
           <button class="btn btn-tab btn-close" onclick="showLogs('close')">
             Logs de Fechamento
           </button>
-          <button class="btn btn-tab btn-warning" onclick="showLogs('movement')">
+          <button
+            class="btn btn-tab btn-warning"
+            onclick="showLogs('movement')"
+          >
             Logs de Movimento
           </button>
           <button class="btn btn-tab btn-emergence" onclick="showLogs('open')">
@@ -189,12 +197,19 @@
           </button>
         </div>
         <div class="filter-actions">
-          <a onclick="changeOrder('desc')" class="btn-desc active">Mais Recentes</a>
+          <a onclick="changeOrder('desc')" class="btn-desc active"
+            >Mais Recentes</a
+          >
           <a onclick="changeOrder('asc')" class="btn-asc">Mais Antigos</a>
         </div>
       </section>
 
-      <section class="log-feed"></section>
+      <section class="log-feed">
+        <div id="loading-log">
+          <div class="log-loader"></div>
+          <p>Carregando...</p>
+        </div>
+      </section>
     </main>
 
     <footer class="footer">

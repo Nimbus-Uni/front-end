@@ -104,6 +104,8 @@ const buttonEmergence = document.querySelector(".btn-emergence");
 const buttonDesc = document.querySelector(".btn-desc");
 const buttonAsc = document.querySelector(".btn-asc");
 
+const loaderSpinner = document.getElementById("loading-log");
+
 let html = "";
 
 let globalStatus = "all";
@@ -135,12 +137,14 @@ async function getPhotos() {
 let filteredLogs = [];
 let inversedFiltered = [];
 
-function showLogs(status, allLogs = logs) {
+async function showLogs(status, allLogs = logs) {
   globalStatus = status;
   today = [];
   yesterday = [];
   lastWeek = [];
   lastMonth = [];
+
+  showLoader();
 
   if (globalOrder === "desc") {
     allLogs = invertedLogs;
@@ -202,10 +206,12 @@ function showLogs(status, allLogs = logs) {
 
   changeButton(status);
 
-  printLogs();
+  await printLogs();
+
+  hideLoader();
 }
 
-function printLogs() {
+async function printLogs() {
   html = "";
 
   if (globalOrder === "desc") {
@@ -213,8 +219,9 @@ function printLogs() {
       html += `<h2 class="title-date">Hoje</h2>`;
       html += `<div class="log-group">`;
 
-      today.forEach((log) => {
+      for (const log of today) {
         let logDate = new Date(log.dataHora);
+        let address = await getLocationByCoords(log.latitude, log.longitude);
 
         html += `
         <article class="log-card">
@@ -227,7 +234,7 @@ function printLogs() {
             </div>
             <div class="card-body">
               <p><strong>Data:</strong> ${logDate.toLocaleString("pt-BR")}</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
+              <p><strong>Localização:</strong> ${address}</p>
             </div>
             ${
               log.status === "movement" || log.status === "open"
@@ -237,7 +244,7 @@ function printLogs() {
                 : ""
             }
         </article>`;
-      });
+      }
 
       html += `</div>`;
     }
@@ -246,8 +253,9 @@ function printLogs() {
       html += `<h2 class="title-date">Ontem</h2>`;
       html += `<div class="log-group">`;
 
-      yesterday.forEach((log) => {
+      for (const log of yesterday) {
         let logDate = new Date(log.dataHora);
+        let address = await getLocationByCoords(log.latitude, log.longitude);
 
         html += `
         <article class="log-card">
@@ -260,7 +268,7 @@ function printLogs() {
             </div>
             <div class="card-body">
               <p><strong>Data:</strong> ${logDate.toLocaleString("pt-BR")}</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
+              <p><strong>Localização:</strong> ${address}</p>
             </div>
             ${
               log.status === "movement" || log.status === "open"
@@ -270,7 +278,7 @@ function printLogs() {
                 : ""
             }
         </article>`;
-      });
+      }
 
       html += `</div>`;
     }
@@ -279,8 +287,9 @@ function printLogs() {
       html += `<h2 class="title-date">Semana Passada</h2>`;
       html += `<div class="log-group">`;
 
-      lastWeek.forEach((log) => {
+      for (const log of lastWeek) {
         let logDate = new Date(log.dataHora);
+        let address = await getLocationByCoords(log.latitude, log.longitude);
 
         html += `
         <article class="log-card">
@@ -293,7 +302,7 @@ function printLogs() {
             </div>
             <div class="card-body">
               <p><strong>Data:</strong> ${logDate.toLocaleString("pt-BR")}</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
+              <p><strong>Localização:</strong> ${address}</p>
             </div>
             ${
               log.status === "movement" || log.status === "open"
@@ -303,7 +312,7 @@ function printLogs() {
                 : ""
             }
         </article>`;
-      });
+      }
 
       html += `</div>`;
     }
@@ -312,8 +321,9 @@ function printLogs() {
       html += `<h2 class="title-date">Mais de uma semana</h2>`;
       html += `<div class="log-group">`;
 
-      lastMonth.forEach((log) => {
+      for (const log of lastMonth) {
         let logDate = new Date(log.dataHora);
+        let address = await getLocationByCoords(log.latitude, log.longitude);
 
         html += `
         <article class="log-card">
@@ -326,7 +336,7 @@ function printLogs() {
             </div>
             <div class="card-body">
               <p><strong>Data:</strong> ${logDate.toLocaleString("pt-BR")}</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
+              <p><strong>Localização:</strong> ${address}</p>
             </div>
             ${
               log.status === "movement" || log.status === "open"
@@ -336,7 +346,7 @@ function printLogs() {
                 : ""
             }
         </article>`;
-      });
+      }
 
       html += `</div>`;
     }
@@ -347,8 +357,9 @@ function printLogs() {
       html += `<h2 class="title-date">Mais de uma semana</h2>`;
       html += `<div class="log-group">`;
 
-      lastMonth.forEach((log) => {
+      for (const log of lastMonth) {
         let logDate = new Date(log.dataHora);
+        let address = await getLocationByCoords(log.latitude, log.longitude);
 
         html += `
         <article class="log-card">
@@ -361,7 +372,7 @@ function printLogs() {
             </div>
             <div class="card-body">
               <p><strong>Data:</strong> ${logDate.toLocaleString("pt-BR")}</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
+              <p><strong>Localização:</strong> ${address}</p>
             </div>
             ${
               log.status === "movement" || log.status === "open"
@@ -371,7 +382,7 @@ function printLogs() {
                 : ""
             }
         </article>`;
-      });
+      }
 
       html += `</div>`;
     }
@@ -380,8 +391,9 @@ function printLogs() {
       html += `<h2 class="title-date">Semana Passada</h2>`;
       html += `<div class="log-group">`;
 
-      lastWeek.forEach((log) => {
+      for (const log of lastWeek) {
         let logDate = new Date(log.dataHora);
+        let address = await getLocationByCoords(log.latitude, log.longitude);
 
         html += `
         <article class="log-card">
@@ -394,7 +406,7 @@ function printLogs() {
             </div>
             <div class="card-body">
               <p><strong>Data:</strong> ${logDate.toLocaleString("pt-BR")}</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
+              <p><strong>Localização:</strong> ${address}</p>
             </div>
             ${
               log.status === "movement" || log.status === "open"
@@ -404,7 +416,7 @@ function printLogs() {
                 : ""
             }
         </article>`;
-      });
+      }
 
       html += `</div>`;
     }
@@ -413,8 +425,9 @@ function printLogs() {
       html += `<h2 class="title-date">Ontem</h2>`;
       html += `<div class="log-group">`;
 
-      yesterday.forEach((log) => {
+      for (const log of yesterday) {
         let logDate = new Date(log.dataHora);
+        let address = await getLocationByCoords(log.latitude, log.longitude);
 
         html += `
         <article class="log-card">
@@ -427,7 +440,7 @@ function printLogs() {
             </div>
             <div class="card-body">
               <p><strong>Data:</strong> ${logDate.toLocaleString("pt-BR")}</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
+              <p><strong>Localização:</strong> ${address}</p>
             </div>
             ${
               log.status === "movement" || log.status === "open"
@@ -437,7 +450,7 @@ function printLogs() {
                 : ""
             }
         </article>`;
-      });
+      }
 
       html += `</div>`;
     }
@@ -446,8 +459,9 @@ function printLogs() {
       html += `<h2 class="title-date">Hoje</h2>`;
       html += `<div class="log-group">`;
 
-      today.forEach((log) => {
+      for (const log of today) {
         let logDate = new Date(log.dataHora);
+        let address = await getLocationByCoords(log.latitude, log.longitude);
 
         html += `
         <article class="log-card">
@@ -460,7 +474,7 @@ function printLogs() {
             </div>
             <div class="card-body">
               <p><strong>Data:</strong> ${logDate.toLocaleString("pt-BR")}</p>
-              <p><strong>Localização:</strong> Itapevi, São Paulo</p>
+              <p><strong>Localização:</strong> ${address}</p>
             </div>
             ${
               log.status === "movement" || log.status === "open"
@@ -472,7 +486,7 @@ function printLogs() {
         </article>`;
 
         html += `</div>`;
-      });
+      }
 
       html += `</div>`;
     }
@@ -522,20 +536,62 @@ function changeButton(status) {
     buttonWarning.classList.remove("active");
     buttonAll.classList.remove("active");
     buttonOK.classList.remove("active");
-
   }
 }
 
-function changeOrderButton(order){
-  if (order === "desc"){
+function changeOrderButton(order) {
+  if (order === "desc") {
     buttonDesc.classList.add("active");
     buttonAsc.classList.remove("active");
   }
 
-  if (order === "asc"){
+  if (order === "asc") {
     buttonAsc.classList.add("active");
     buttonDesc.classList.remove("active");
   }
+}
+
+async function getLocationByCoords(lat, lon) {
+  const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&accept-language=pt-BR`;
+
+  try {
+    const response = await fetch(url, {
+      headers: {
+        "User-Agent": "NimbusSecurityApp/1.0",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Error ao se comunicar com o Nominatim.");
+    }
+
+    const data = await response.json();
+
+    const city =
+      data.address.city ||
+      data.address.town ||
+      data.address.village ||
+      "Cidade não identificada";
+    const state = data.address.state || "Estado não identificado";
+    const country = data.address.country || "País não identificado";
+
+    const fullAddress = `${city}, ${state}, ${country}`;
+
+    return fullAddress;
+  } catch (e) {
+    console.error("Error ao converter coordenadas.");
+    return "Localização não identificada";
+  }
+}
+
+function showLoader() {
+  loaderSpinner.style.display = "flex";
+  container.style.display = "none";
+}
+
+function hideLoader() {
+  loaderSpinner.style.display = "none";
+  container.style.display = "block";
 }
 
 getPhotos();
