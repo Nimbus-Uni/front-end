@@ -706,6 +706,7 @@ window.lastImage = lastImage;
 window.nextImage = nextImage;
 window.showLogs = showLogs;
 window.setImage = setImage;
+window.showMenu = showMenu;
 
 window.addEventListener("load", () => {
   getPhotos();

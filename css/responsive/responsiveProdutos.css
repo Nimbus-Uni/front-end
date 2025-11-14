@@ -1,3 +1,9 @@
+@media (max-width: 1300px) {
+  main.container {
+    margin: 0 50px;
+  }
+}
+
 @media (max-width: 1024px) {
   .navbar .menu {
     display: none;
@@ -10,10 +16,127 @@
   .menu-button {
     display: block;
   }
+
+  .page-title h1 {
+    font-size: 30px;
+  }
+
+  .log-filters {
+    flex-direction: column;
+  }
+
+  .filter-actions {
+    margin-top: 25px;
+  }
+}
+
+@media (max-width: 760px) {
+  .page-title h1 {
+    font-size: 25px;
+  }
+
+  .page-title .lead {
+    font-size: 15px;
+  }
+
+  main.container {
+    margin: 0 30px;
+  }
+
+  .log-group {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .log-feed h2 {
+    font-size: 20px;
+  }
+
+  #carousel-image {
+    width: 350px;
+    height: 350px;
+  }
+
+  .arrow.left {
+    left: -15%;
+  }
+
+  .arrow.right {
+    right: -15%;
+  }
+
+  #group-index {
+    bottom: 28%;
+  }
 }
 
 @media (max-width: 480px) {
   .menu-responsive {
     right: 17%;
+  }
+
+  main.container {
+    margin: 0 20px;
+  }
+
+  .filter-tabs .btn-tab {
+    padding: 0.5rem 1.2rem;
+    font-size: 12px;
+  }
+
+  .filter-actions a {
+    font-size: 12px;
+  }
+
+  .log-card {
+    padding: 20px;
+  }
+
+  .log-filters {
+    margin-top: -40px;
+  }
+
+  .card-header h3 {
+    font-size: 16px;
+  }
+
+  .card-body p {
+    font-size: 13px;
+  }
+
+  .card-footer .btn-ghost {
+    padding: 5px 10px;
+    font-size: 13px;
+  }
+
+  .log-loader {
+    width: 40px;
+    height: 40px;
+  }
+
+  #carousel-image {
+    width: 270px;
+    height: 270px;
+  }
+
+  .arrow.left {
+    left: -12%;
+  }
+
+  .arrow.right {
+    right: -12%;
+  }
+
+  #group-index {
+    bottom: 32%;
+  }
+
+  .filter-tabs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .filter-tabs .btn-tab.active,
+  .filter-tabs .btn-tab:hover {
+    font-weight: 400;
   }
 }

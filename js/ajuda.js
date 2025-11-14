@@ -1,3 +1,4 @@
+console.log("Nimbus Security Page Loaded ✅");
 // Tela de carregamento
 window.addEventListener("load", () => {
   const loader = document.getElementById("loading-screen");

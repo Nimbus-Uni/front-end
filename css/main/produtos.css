@@ -235,13 +235,13 @@ body {
 
 .page-title .lead {
   color: var(--primary-color); /* <<< CORREÇÃO: Aplica a cor da imagem */
-  font-size: 1.1rem;
+  font-size: 17px;
   margin-bottom: 0.5rem;
 }
 
 .page-title h1 {
   /* <<< CORREÇÃO: Estiliza a tag h1 diretamente, e não a classe .h1 */
-  font-size: 2.5rem;
+  font-size: 40px;
   font-weight: 700; /* O texto na imagem é mais grosso (bold) */
   line-height: 1.4;
   color: #ffffff;
@@ -255,6 +255,14 @@ body {
   margin-bottom: 2rem;
   border-bottom: 1px solid var(--card-bg);
   padding-bottom: 1rem;
+}
+
+.filter-tabs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .filter-tabs .btn-tab {
@@ -300,7 +308,7 @@ body {
 .log-feed h2 {
   color: #fff;
   margin: 2rem 0 1rem 0;
-  font-size: 1.2rem;
+  font-size: 22px;
 }
 
 .log-group {
@@ -405,7 +413,7 @@ body {
 }
 
 main.container {
-  padding: 0 5rem;
+  margin: 0 100px;
 }
 
 /* FOOTER */
@@ -522,7 +530,7 @@ main.container {
   right: -20%; /* mover para dentro do carousel */
 }
 
-#group-index{
+#group-index {
   position: absolute;
   z-index: 50;
   display: flex;
