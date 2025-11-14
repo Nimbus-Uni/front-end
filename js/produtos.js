@@ -1,3 +1,10 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+import {
+  getDatabase,
+  ref,
+  onValue,
+} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+
 console.log("Nimbus Security Page Loaded ✅");
 // Tela de carregamento
 window.addEventListener("load", () => {
@@ -52,12 +59,18 @@ window.addEventListener("scroll", revealOnScroll);
 // Executa na primeira carga também
 revealOnScroll();
 
-// Conexão com Firebase
-const firebaseUrl = "https://esp32-a5949-default-rtdb.firebaseio.com";
+const firebaseConfig = {
+  apiKey: "...",
+  authDomain: "...",
+  databaseURL: "https://esp32-a5949-default-rtdb.firebaseio.com",
+  projectId: "...",
+  storageBucket: "...",
+  messagingSenderId: "...",
+  appId: "...",
+};
 
-// setInterval(() => {
-//   getPhotos();
-// }, 1000);
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
 
 let today = [];
 let yesterday = [];
@@ -119,10 +132,21 @@ let html = "";
 let globalStatus = "all";
 let globalOrder = "desc";
 
+let filteredLogs = [];
+let inversedFiltered = [];
+
+let cache = {};
+
+let htmlCarousel;
+let index = 0;
+let images;
+let logTimestamp;
+
 async function getPhotos() {
-  try {
-    const response = await fetch(`${firebaseUrl}/logs.json`);
-    const data = await response.json();
+  const logsRef = ref(db, "logs");
+
+  onValue(logsRef, async (snapshot) => {
+    const data = snapshot.val();
 
     if (!data) {
       console.log("Fotos não encontradas");
@@ -137,13 +161,8 @@ async function getPhotos() {
     invertedLogs = logs.toReversed();
 
     await showLogs("all", invertedLogs);
-  } catch (err) {
-    console.log("Erro:", err);
-  }
+  });
 }
-
-let filteredLogs = [];
-let inversedFiltered = [];
 
 async function showLogs(status, allLogs = logs) {
   globalStatus = status;
@@ -563,8 +582,6 @@ function changeOrderButton(order) {
   }
 }
 
-let cache = {};
-
 async function getLocationByCoords(lat, lon) {
   const key = `${lat},${lon}`;
 
@@ -609,11 +626,6 @@ function hideLoader() {
   loaderSpinner.style.display = "none";
 }
 
-let htmlCarousel;
-let index = 0;
-let images;
-let logTimestamp;
-
 function showImages(logID, index) {
   const log = logs.find((log) => log.timestamp === logID);
 
@@ -636,7 +648,7 @@ function showImages(logID, index) {
 
     for (let i = 0; i < images.length; i++) {
       htmlCarousel += `
-      <div class="index ${index === i && "index-active"}"></div>
+      <div class="index ${index === i && "index-active"}" onClick="setImage(${i})"></div>
       `;
     }
 
@@ -680,7 +692,24 @@ function nextImage() {
   }
 }
 
-getPhotos();
+function setImage(newIndex){
+  index = newIndex;
+  showImages(logTimestamp, index);
+}
+
+window.showImages = showImages;
+window.changeOrder = changeOrder;
+window.changeButton = changeButton;
+window.changeOrderButton = changeOrderButton;
+window.hideCarousel = hideCarousel;
+window.lastImage = lastImage;
+window.nextImage = nextImage;
+window.showLogs = showLogs;
+window.setImage = setImage;
+
+window.addEventListener("load", () => {
+  getPhotos();
+});
 
 let isShowing = false;
 const menu = document.querySelector(".menu-responsive");
