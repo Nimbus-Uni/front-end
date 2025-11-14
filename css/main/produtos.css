@@ -7,6 +7,7 @@
 
 html,
 body {
+  width: 100%;
   height: auto;
   min-height: 100%;
   position: relative;
@@ -277,11 +278,6 @@ body {
   font-weight: 600;
 }
 
-.filter-tabs .btn-tab:hover {
-  background-color: #0b161d;
-  font-weight: 800;
-}
-
 /* <<< CORREÇÃO: Estilo para o link "Mais Antigos" */
 .filter-actions a {
   color: var(--text-muted);
@@ -344,6 +340,7 @@ body {
   color: var(--accent-color);
   background-color: #11222e;
   border-radius: 10%;
+  padding: 2px 10px;
 }
 
 .status {
@@ -359,7 +356,7 @@ body {
 }
 .status-aviso {
   background-color: var(--status-aviso);
-  color: var(--secondary-color);
+  color: white;
 }
 .status-emergencia {
   background-color: var(--status-emergencia);
@@ -418,6 +415,7 @@ main.container {
   font-size: 0.85rem;
   color: var(--text-muted);
   border-top: 1px solid rgba(255, 255, 255, 0.05);
+  z-index: 5;
 }
 
 .menu-responsive {
@@ -471,4 +469,75 @@ main.container {
   min-height: 100%;
   display: none;
   z-index: 3;
+}
+
+#background-carousel {
+  width: 100%;
+  min-height: 100vh;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(46, 46, 46, 0.411);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+}
+
+#close-carousel {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 50;
+}
+
+#carousel {
+  z-index: 50;
+  position: relative;
+}
+
+#carousel-image {
+  width: 500px;
+  height: 500px;
+}
+
+.arrow {
+  background: none;
+  border: none;
+  color: #1da1fb;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 50;
+  position: absolute;
+  top: 45%;
+}
+
+.arrow.left {
+  left: -20%;
+}
+
+.arrow.right {
+  right: -20%; /* mover para dentro do carousel */
+}
+
+#group-index{
+  position: absolute;
+  z-index: 50;
+  display: flex;
+  gap: 10px;
+  bottom: 20%;
+}
+
+.index {
+  width: 12px;
+  height: 12px;
+  background-color: white;
+  z-index: 50;
+  border-radius: 20px;
+}
+
+.index-active {
+  background-color: var(--primary-color);
 }

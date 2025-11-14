@@ -104,6 +104,14 @@ const buttonEmergence = document.querySelector(".btn-emergence");
 const buttonDesc = document.querySelector(".btn-desc");
 const buttonAsc = document.querySelector(".btn-asc");
 
+const backgroundCarousel = document.getElementById("background-carousel");
+const closeCarousel = document.getElementById("close-carousel");
+const carousel = document.getElementById("carousel");
+const carouselImage = document.getElementById("carousel-image");
+const groupIndex = document.getElementById("group-index");
+const arrowLeft = document.querySelector(".left");
+const arrowRight = document.querySelector(".right");
+
 const loaderSpinner = document.getElementById("loading-log");
 
 let html = "";
@@ -128,7 +136,7 @@ async function getPhotos() {
 
     invertedLogs = logs.toReversed();
 
-    showLogs("all", invertedLogs);
+    await showLogs("all", invertedLogs);
   } catch (err) {
     console.log("Erro:", err);
   }
@@ -145,6 +153,8 @@ async function showLogs(status, allLogs = logs) {
   lastMonth = [];
 
   showLoader();
+
+  await new Promise((r) => setTimeout(r, 50));
 
   if (globalOrder === "desc") {
     allLogs = invertedLogs;
@@ -206,7 +216,11 @@ async function showLogs(status, allLogs = logs) {
 
   changeButton(status);
 
-  await printLogs();
+  try {
+    await printLogs();
+  } catch (e) {
+    console.log("Erro ao capturar os logs.");
+  }
 
   hideLoader();
 }
@@ -238,9 +252,9 @@ async function printLogs() {
             </div>
             ${
               log.status === "movement" || log.status === "open"
-                ? `<div class="card-footer"> <a href="#" class="btn btn-ghost">${
-                    statusVariables[log.status][3]
-                  }</a> </div>`
+                ? `<div class="card-footer"> <a class="btn btn-ghost" onClick="showImages(${
+                    log.timestamp
+                  }, 0)">${statusVariables[log.status][3]}</a> </div>`
                 : ""
             }
         </article>`;
@@ -272,9 +286,9 @@ async function printLogs() {
             </div>
             ${
               log.status === "movement" || log.status === "open"
-                ? `<div class="card-footer"> <a href="#" class="btn btn-ghost">${
-                    statusVariables[log.status][3]
-                  }</a> </div>`
+                ? `<div class="card-footer"> <a class="btn btn-ghost" onClick="showImages(${
+                    log.timestamp
+                  }, 0)">${statusVariables[log.status][3]}</a> </div>`
                 : ""
             }
         </article>`;
@@ -306,9 +320,9 @@ async function printLogs() {
             </div>
             ${
               log.status === "movement" || log.status === "open"
-                ? `<div class="card-footer"> <a href="#" class="btn btn-ghost">${
-                    statusVariables[log.status][3]
-                  }</a> </div>`
+                ? `<div class="card-footer"> <a class="btn btn-ghost" onClick="showImages(${
+                    log.timestamp
+                  }, 0)">${statusVariables[log.status][3]}</a> </div>`
                 : ""
             }
         </article>`;
@@ -340,9 +354,9 @@ async function printLogs() {
             </div>
             ${
               log.status === "movement" || log.status === "open"
-                ? `<div class="card-footer"> <a href="#" class="btn btn-ghost">${
-                    statusVariables[log.status][3]
-                  }</a> </div>`
+                ? `<div class="card-footer"> <a class="btn btn-ghost" onClick="showImages(${
+                    log.timestamp
+                  }, 0)">${statusVariables[log.status][3]}</a> </div>`
                 : ""
             }
         </article>`;
@@ -376,9 +390,9 @@ async function printLogs() {
             </div>
             ${
               log.status === "movement" || log.status === "open"
-                ? `<div class="card-footer"> <a href="#" class="btn btn-ghost">${
-                    statusVariables[log.status][3]
-                  }</a> </div>`
+                ? `<div class="card-footer"> <a class="btn btn-ghost" onClick="showImages(${
+                    log.timestamp
+                  }, 0)">${statusVariables[log.status][3]}</a> </div>`
                 : ""
             }
         </article>`;
@@ -410,9 +424,9 @@ async function printLogs() {
             </div>
             ${
               log.status === "movement" || log.status === "open"
-                ? `<div class="card-footer"> <a href="#" class="btn btn-ghost">${
-                    statusVariables[log.status][3]
-                  }</a> </div>`
+                ? `<div class="card-footer"> <a class="btn btn-ghost" onClick="showImages(${
+                    log.timestamp
+                  }, 0)">${statusVariables[log.status][3]}</a> </div>`
                 : ""
             }
         </article>`;
@@ -444,9 +458,9 @@ async function printLogs() {
             </div>
             ${
               log.status === "movement" || log.status === "open"
-                ? `<div class="card-footer"> <a href="#" class="btn btn-ghost">${
-                    statusVariables[log.status][3]
-                  }</a> </div>`
+                ? `<div class="card-footer"> <a class="btn btn-ghost" onClick="showImages(${
+                    log.timestamp
+                  }, 0)">${statusVariables[log.status][3]}</a> </div>`
                 : ""
             }
         </article>`;
@@ -478,14 +492,12 @@ async function printLogs() {
             </div>
             ${
               log.status === "movement" || log.status === "open"
-                ? `<div class="card-footer"> <a href="#" class="btn btn-ghost">${
-                    statusVariables[log.status][3]
-                  }</a> </div>`
+                ? `<div class="card-footer"> <a class="btn btn-ghost" onClick="showImages(${
+                    log.timestamp
+                  }, 0)">${statusVariables[log.status][3]}</a> </div>`
                 : ""
             }
         </article>`;
-
-        html += `</div>`;
       }
 
       html += `</div>`;
@@ -551,47 +563,121 @@ function changeOrderButton(order) {
   }
 }
 
+let cache = {};
+
 async function getLocationByCoords(lat, lon) {
-  const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&accept-language=pt-BR`;
+  const key = `${lat},${lon}`;
+
+  if (cache[key]) {
+    return cache[key];
+  }
+
+  const apiKey = "00304d3031344c0ab2e524f58cda3799";
+  const url = `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lon}&apiKey=${apiKey}&lang=pt`;
 
   try {
-    const response = await fetch(url, {
-      headers: {
-        "User-Agent": "NimbusSecurityApp/1.0",
-      },
-    });
+    const response = await fetch(url);
 
     if (!response.ok) {
-      throw new Error("Error ao se comunicar com o Nominatim.");
+      throw new Error("Error ao se comunicar com o Geoapify.");
     }
 
     const data = await response.json();
 
-    const city =
-      data.address.city ||
-      data.address.town ||
-      data.address.village ||
-      "Cidade não identificada";
-    const state = data.address.state || "Estado não identificado";
-    const country = data.address.country || "País não identificado";
+    const city = data.features[0].properties.city || "Cidade não identificada";
+    const state =
+      data.features[0].properties.county || "Estado não identificado";
+    const country =
+      data.features[0].properties.country || "País não identificado";
 
     const fullAddress = `${city}, ${state}, ${country}`;
+
+    cache[key] = fullAddress;
 
     return fullAddress;
   } catch (e) {
     console.error("Error ao converter coordenadas.");
-    return "Localização não identificada";
+    return "Não identificada";
   }
 }
 
 function showLoader() {
   loaderSpinner.style.display = "flex";
-  container.style.display = "none";
 }
 
 function hideLoader() {
   loaderSpinner.style.display = "none";
-  container.style.display = "block";
+}
+
+let htmlCarousel;
+let index = 0;
+let images;
+let logTimestamp;
+
+function showImages(logID, index) {
+  const log = logs.find((log) => log.timestamp === logID);
+
+  if (log.images === undefined) {
+    carouselImage.src = log.image;
+
+    groupIndex.innerHTML = "";
+
+    arrowLeft.innerHTML = "";
+    arrowRight.innerHTML = "";
+  }
+
+  if (log.images !== undefined) {
+    images = Object.values(log.images);
+    logTimestamp = logID;
+
+    htmlCarousel = "";
+
+    carouselImage.src = images[index];
+
+    for (let i = 0; i < images.length; i++) {
+      htmlCarousel += `
+      <div class="index ${index === i && "index-active"}"></div>
+      `;
+    }
+
+    arrowLeft.innerHTML = "❮";
+    arrowRight.innerHTML = "❯";
+    groupIndex.innerHTML = htmlCarousel;
+  }
+
+  closeCarousel.style.display = "block";
+  carousel.style.display = "block";
+  backgroundCarousel.style.display = "flex";
+}
+
+function hideCarousel() {
+  index = 0;
+  images = [];
+  logTimestamp = 0;
+
+  carousel.style.display = "none";
+  closeCarousel.style.display = "none";
+  backgroundCarousel.style.display = "none";
+}
+
+function lastImage() {
+  if (Array.isArray(images) && index > 0) {
+    index -= 1;
+    showImages(logTimestamp, index);
+  } else if (Array.isArray(images) && index == 0) {
+    index = images.length - 1;
+    showImages(logTimestamp, index);
+  }
+}
+
+function nextImage() {
+  if (Array.isArray(images) && index < images.length - 1) {
+    index += 1;
+    showImages(logTimestamp, index);
+  } else if (Array.isArray(images) && index === images.length - 1) {
+    index = 0;
+    showImages(logTimestamp, index);
+  }
 }
 
 getPhotos();
