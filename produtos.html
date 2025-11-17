@@ -4,21 +4,33 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Nimbus - Segurança e Tecnologia</title>
+
     <!-- Fonte (Google Fonts) -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap"
       rel="stylesheet"
     />
 
+    <!-- Variáveis e estilos -->
     <link rel="icon" type="image/png" href="assets/icon.png" />
     <link rel="stylesheet" href="css/variables.css" />
     <link rel="stylesheet" href="css/main/produtos.css" />
     <link rel="stylesheet" href="css/responsive/responsiveProdutos.css" />
   </head>
   <body>
+    <!-- Tela de Carregamento -->
     <div id="loading-screen">
       <div class="loader"></div>
       <p>Carregando...</p>
+    </div>
+
+    <!-- Tela Offline -->
+    <div id="offline-screen">
+      <div class="offline-box">
+        <div class="offline-icon">📶❌</div>
+        <h2>Você está offline</h2>
+        <p>Verifique sua conexão com a internet.</p>
+      </div>
     </div>
 
     <main id="close-area" onclick="showMenu()"></main>

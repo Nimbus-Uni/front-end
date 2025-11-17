@@ -34,31 +34,6 @@ window.addEventListener("offline", updateOnlineStatus);
 // Checa status inicial
 updateOnlineStatus();
 
-// Função para revelar elementos ao rolar a página
-function revealOnScroll() {
-  const reveals = document.querySelectorAll(
-    ".reveal, .reveal-left, .reveal-right"
-  );
-
-  for (let i = 0; i < reveals.length; i++) {
-    let windowHeight = window.innerHeight;
-    let elementTop = reveals[i].getBoundingClientRect().top;
-    let elementVisible = 100; // quanto precisa aparecer para ativar
-
-    if (elementTop < windowHeight - elementVisible) {
-      reveals[i].classList.add("active");
-    } else {
-      reveals[i].classList.remove("active");
-    }
-  }
-}
-
-// Escuta o scroll
-window.addEventListener("scroll", revealOnScroll);
-
-// Executa na primeira carga também
-revealOnScroll();
-
 const firebaseConfig = {
   apiKey: "...",
   authDomain: "...",
